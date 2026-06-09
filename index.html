@@ -473,22 +473,56 @@
     }
 
     .ticker {
+      position: relative;
       overflow: hidden;
       border-block: 1px solid rgba(0, 0, 0, 0.08);
       background: var(--red);
       color: var(--white);
-      mask-image: linear-gradient(90deg, #000 0%, #000 94%, transparent 100%);
+    }
+
+    .ticker::before,
+    .ticker::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 56px;
+      pointer-events: none;
+    }
+
+    .ticker::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--red), transparent);
+    }
+
+    .ticker::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--red), transparent);
     }
 
     .ticker-track {
       width: max-content;
       display: flex;
+      animation: tickerScroll 22s linear infinite;
+      animation-delay: 0.8s;
+      will-change: transform;
+    }
+
+    .ticker-group {
+      display: flex;
+      flex: 0 0 auto;
     }
 
     .ticker span {
-      padding: 14px 30px;
+      padding: 14px 0;
       white-space: nowrap;
       font-size: 0.88rem;
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
     }
 
     .section {
@@ -1121,10 +1155,18 @@
 
     <div class="ticker" aria-hidden="true">
       <div class="ticker-track">
-        <span>JACK / Anime / Manga / Culture / Community / Keio University /</span>
-        <span>JACK / Anime / Manga / Culture / Community / Keio University /</span>
-        <span>JACK / Anime / Manga / Culture / Community / Keio University /</span>
-        <span>JACK / Anime / Manga / Culture / Community / Keio University /</span>
+        <div class="ticker-group">
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+        </div>
+        <div class="ticker-group">
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
+        </div>
       </div>
     </div>
 
