@@ -93,14 +93,21 @@
     .brand-mark {
       width: 42px;
       height: 42px;
-      display: grid;
-      place-items: center;
       border: 2px solid currentColor;
       color: var(--red);
       background: var(--white);
-      font-size: 0.82rem;
-      font-family: "Bebas Neue", Impact, sans-serif;
-      line-height: 1;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.35);
     }
 
     .brand-text {
@@ -399,6 +406,19 @@
       color: var(--red);
     }
 
+    .btn-x {
+      background: var(--white);
+      color: var(--black);
+      border-color: rgba(0, 0, 0, 0.12);
+    }
+
+    .btn-x:hover {
+      transform: translateY(-2px);
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+
     .hero-visual {
       position: relative;
       min-height: 540px;
@@ -680,6 +700,11 @@
       background: var(--line-green);
     }
 
+    .contact-icon.x {
+      background: var(--black);
+      color: var(--white);
+    }
+
     .contact-card h3 {
       margin: 0 0 10px;
       font-size: 1.38rem;
@@ -728,6 +753,15 @@
       place-items: center;
       background: var(--red);
       color: var(--white);
+      overflow: hidden;
+      padding: 3px;
+    }
+
+    .footer-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(1.35);
     }
 
     .footer-copy {
@@ -952,8 +986,8 @@
 <body>
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <a class="brand" href="#top" aria-label="JACK トップへ">
-        <span class="brand-mark">J</span>
+      <a class="brand" href="./" aria-label="JACK ホームへ">
+        <span class="brand-mark"><img src="assets/jack-logo-cutout.png" alt=""></span>
         <span class="brand-text">
           <strong>JACK</strong>
           <span>Japan Anime Culture Kenkyuukai</span>
@@ -994,7 +1028,7 @@
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596a.629.629 0 01-.199.031c-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.271.173-.51.43-.595a.67.67 0 01.194-.033c.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
               LINE OpenChat
             </a>
-            <a class="btn btn-light" href="https://x.com/jack_keio_sfc" target="_blank" rel="noopener">
+            <a class="btn btn-x" href="https://x.com/jack_keio_sfc" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               Follow on X
             </a>
@@ -1087,12 +1121,12 @@
           </article>
 
           <article class="contact-card reveal">
-            <div class="contact-icon">
+            <div class="contact-icon x">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             </div>
             <h3>X</h3>
             <p>最新の活動情報やイベント告知をチェック。</p>
-            <a class="btn btn-light" href="https://x.com/jack_keio_sfc" target="_blank" rel="noopener">フォローする</a>
+            <a class="btn btn-x" href="https://x.com/jack_keio_sfc" target="_blank" rel="noopener">フォローする</a>
           </article>
         </div>
       </div>
@@ -1101,7 +1135,7 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <a class="footer-logo" href="#top"><span>J</span>JACK</a>
+      <a class="footer-logo" href="./"><span><img src="assets/jack-logo-cutout.png" alt=""></span>JACK</a>
       <p class="footer-copy">© 2026 慶應義塾大学 ジャパンアニメカルチャー研究会</p>
     </div>
   </footer>
