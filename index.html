@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。声優・アニメ業界イベントの開催を目的とした公認サークルです。">
+  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。蒼井翔太トークショーのチケット情報と、これまでの活動を掲載しています。">
   <title>JACK | 慶應義塾大学 ジャパンアニメカルチャー研究会</title>
   <link rel="icon" href="jack-logo-cutout.png">
+  <link rel="preload" as="image" href="aoi-shouta-talkshow.jpg">
   <style>
     :root {
       --red: #e6002d;
@@ -18,6 +19,10 @@
       --gold: #c48625;
       --muted: #6f6863;
       --line-green: #06c755;
+      --violet: #6d20d9;
+      --violet-deep: #21063b;
+      --magenta: #ed1dcc;
+      --acid: #eeff38;
       --max: 1180px;
       --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
     }
@@ -159,6 +164,401 @@
     .nav-links a:hover::after {
       transform: scaleX(1);
       transform-origin: left;
+    }
+
+    /* Talk show campaign */
+    .talk-show {
+      position: relative;
+      min-height: 92svh;
+      isolation: isolate;
+      overflow: hidden;
+      background: #10031d;
+      color: var(--white);
+    }
+
+    .talk-photo {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      background: #10031d;
+    }
+
+    .talk-photo img {
+      width: 68%;
+      height: 100%;
+      margin-left: auto;
+      object-fit: cover;
+      object-position: center 39%;
+      filter: contrast(1.05) saturate(0.88);
+      transform: scale(1.035);
+      animation: talkPhotoIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .talk-photo::before,
+    .talk-photo::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .talk-photo::before {
+      z-index: 1;
+      background:
+        linear-gradient(90deg, #10031d 0%, rgba(16, 3, 29, 0.98) 31%, rgba(55, 10, 91, 0.72) 52%, rgba(15, 3, 28, 0.12) 100%),
+        linear-gradient(0deg, rgba(14, 2, 27, 0.8) 0%, transparent 44%, rgba(58, 10, 93, 0.14) 100%);
+    }
+
+    .talk-photo::after {
+      z-index: 2;
+      background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 5px),
+        linear-gradient(120deg, transparent 0 58%, rgba(190, 118, 255, 0.22) 70%, transparent 82%);
+      mix-blend-mode: soft-light;
+      opacity: 0.48;
+    }
+
+    .talk-show::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: linear-gradient(90deg, #000, transparent 72%);
+      mask-image: linear-gradient(90deg, #000, transparent 72%);
+      opacity: 0.46;
+      pointer-events: none;
+    }
+
+    .talk-show::after {
+      content: "SPECIAL TALK SHOW";
+      position: absolute;
+      left: -0.03em;
+      bottom: -0.28em;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.045);
+      font-size: clamp(5rem, 13vw, 13rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.09em;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+
+    .talk-fx {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .talk-beam {
+      --beam-angle: -8deg;
+      position: absolute;
+      left: -12vw;
+      width: 78vw;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(238, 255, 56, 0.92), rgba(239, 29, 204, 0.6), transparent);
+      box-shadow: 0 0 18px rgba(221, 86, 255, 0.78);
+      transform-origin: left center;
+      transform: rotate(var(--beam-angle)) scaleX(0);
+      animation: talkBeam 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    .talk-beam:nth-child(1) {
+      top: 23%;
+      --beam-angle: -8deg;
+      animation-delay: 0.15s;
+    }
+
+    .talk-beam:nth-child(2) {
+      top: 63%;
+      --beam-angle: 7deg;
+      animation-delay: 0.55s;
+    }
+
+    .talk-beam:nth-child(3) {
+      top: 81%;
+      width: 56vw;
+      --beam-angle: -4deg;
+      animation-delay: 1.05s;
+    }
+
+    .talk-flash {
+      position: absolute;
+      inset: -30%;
+      background: linear-gradient(108deg, transparent 42%, rgba(255, 255, 255, 0.72) 49%, rgba(212, 147, 255, 0.32) 53%, transparent 60%);
+      mix-blend-mode: screen;
+      transform: translateX(-65%);
+      animation: talkFlash 5.2s ease-in-out infinite;
+    }
+
+    .talk-star {
+      position: absolute;
+      color: var(--acid);
+      font-size: 1.5rem;
+      text-shadow: 0 0 20px rgba(238, 255, 56, 0.7);
+      animation: talkStar 2.4s ease-in-out infinite;
+    }
+
+    .talk-star.star-1 { top: 18%; left: 46%; animation-delay: 0.4s; }
+    .talk-star.star-2 { top: 71%; left: 54%; color: #ff55dd; animation-delay: 1s; }
+    .talk-star.star-3 { top: 34%; right: 7%; animation-delay: 1.5s; }
+
+    .talk-inner {
+      position: relative;
+      z-index: 4;
+      width: min(var(--max), calc(100% - 48px));
+      min-height: 92svh;
+      margin: 0 auto;
+      padding: 88px 0 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .talk-copy {
+      width: min(52%, 610px);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .talk-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 12px;
+      color: #e8cdfd;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      animation: talkKickerIn 0.7s 0.15s both;
+    }
+
+    .talk-kicker::before {
+      content: "";
+      width: 42px;
+      height: 3px;
+      background: var(--acid);
+      box-shadow: 0 0 16px rgba(238, 255, 56, 0.7);
+    }
+
+    .talk-announcement {
+      position: relative;
+      margin: 0;
+      font-weight: 900;
+      line-height: 0.86;
+      letter-spacing: -0.075em;
+      text-transform: uppercase;
+      transform: skewX(-5deg);
+    }
+
+    .talk-announcement span {
+      display: block;
+    }
+
+    .talk-announcement-main {
+      font-size: clamp(2.4rem, 4.4vw, 4.6rem);
+      color: var(--white);
+      text-shadow: 0 0 28px rgba(191, 111, 255, 0.5);
+      animation: talkTitleIn 0.86s 0.22s cubic-bezier(0.1, 1, 0.2, 1) both;
+    }
+
+    .talk-announcement-hit {
+      position: relative;
+      margin-top: 0.08em;
+      color: var(--acid);
+      font-size: clamp(4.2rem, 7.4vw, 7.5rem);
+      text-shadow:
+        4px 4px 0 #7c0ae0,
+        8px 8px 0 rgba(237, 29, 204, 0.46),
+        0 0 34px rgba(238, 255, 56, 0.52);
+      animation: talkHitIn 0.72s 0.72s cubic-bezier(0.08, 1.36, 0.35, 1) both;
+    }
+
+    .talk-announcement-hit::after {
+      content: "";
+      position: absolute;
+      left: -8%;
+      right: -16%;
+      bottom: 0.06em;
+      height: 0.12em;
+      z-index: -1;
+      background: linear-gradient(90deg, var(--magenta), var(--acid), transparent);
+      transform: scaleX(0) rotate(-2deg);
+      transform-origin: left;
+      animation: talkUnderline 0.55s 1.25s cubic-bezier(0.1, 1, 0.2, 1) forwards;
+    }
+
+    .talk-logo-stage {
+      width: min(310px, 30vw);
+      margin: -2px 0 -10px;
+      animation: talkLogoIn 1s 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .talk-event-logo {
+      width: 100%;
+      filter:
+        brightness(1.22)
+        saturate(1.14)
+        drop-shadow(0 20px 26px rgba(0, 0, 0, 0.38))
+        drop-shadow(0 0 22px rgba(128, 34, 226, 0.42));
+      animation: talkLogoGlow 3.4s 2s ease-in-out infinite;
+    }
+
+    .talk-ticket {
+      min-height: 58px;
+      min-width: 310px;
+      display: inline-grid;
+      grid-template-columns: 1fr auto;
+      grid-template-rows: auto auto;
+      align-items: center;
+      column-gap: 24px;
+      border: 1px solid rgba(238, 255, 56, 0.8);
+      border-radius: 6px;
+      padding: 12px 16px 12px 20px;
+      background: var(--acid);
+      color: #180626;
+      box-shadow:
+        8px 8px 0 rgba(124, 10, 224, 0.92),
+        0 18px 48px rgba(80, 0, 145, 0.42);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+      animation: talkTicketIn 0.7s 1.42s both;
+    }
+
+    .talk-ticket:hover {
+      transform: translate(-3px, -3px);
+      background: #f5ff73;
+      box-shadow:
+        12px 12px 0 rgba(237, 29, 204, 0.92),
+        0 24px 56px rgba(80, 0, 145, 0.5);
+    }
+
+    .talk-ticket strong {
+      grid-column: 1;
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .talk-ticket small {
+      grid-column: 1;
+      color: rgba(24, 6, 38, 0.68);
+      font-size: 0.68rem;
+      line-height: 1.2;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .talk-ticket svg {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      width: 24px;
+      height: 24px;
+    }
+
+    .talk-side-label {
+      position: absolute;
+      top: 50%;
+      right: 24px;
+      z-index: 4;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.66rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      transform: translateY(-50%);
+    }
+
+    .talk-scroll {
+      position: absolute;
+      right: 42px;
+      bottom: 24px;
+      z-index: 5;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .talk-scroll::after {
+      content: "↓";
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      border-radius: 50%;
+      animation: talkScroll 1.5s ease-in-out infinite;
+    }
+
+    @keyframes talkPhotoIn {
+      from { opacity: 0; transform: scale(1.12); }
+      to { opacity: 1; transform: scale(1.035); }
+    }
+
+    @keyframes talkKickerIn {
+      from { opacity: 0; transform: translateX(-26px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes talkTitleIn {
+      from { opacity: 0; transform: translateX(-110%) skewX(-12deg); }
+      to { opacity: 1; transform: translateX(0) skewX(0); }
+    }
+
+    @keyframes talkHitIn {
+      0% { opacity: 0; transform: scale(2.4) rotate(-9deg); filter: blur(8px); }
+      65% { opacity: 1; transform: scale(0.92) rotate(1deg); filter: blur(0); }
+      100% { opacity: 1; transform: scale(1) rotate(0); filter: blur(0); }
+    }
+
+    @keyframes talkUnderline {
+      to { transform: scaleX(1) rotate(-2deg); }
+    }
+
+    @keyframes talkLogoIn {
+      from { opacity: 0; transform: translateY(34px) scale(0.92); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes talkLogoGlow {
+      0%, 100% { filter: brightness(1.22) saturate(1.14) drop-shadow(0 20px 26px rgba(0, 0, 0, 0.38)) drop-shadow(0 0 16px rgba(128, 34, 226, 0.34)); }
+      50% { filter: brightness(1.28) saturate(1.18) drop-shadow(0 20px 26px rgba(0, 0, 0, 0.38)) drop-shadow(0 0 32px rgba(237, 29, 204, 0.64)); }
+    }
+
+    @keyframes talkTicketIn {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes talkBeam {
+      0%, 12% { opacity: 0; transform: rotate(var(--beam-angle)) scaleX(0); }
+      28% { opacity: 1; transform: rotate(var(--beam-angle)) scaleX(1); }
+      48%, 100% { opacity: 0; transform: rotate(var(--beam-angle)) scaleX(1); }
+    }
+
+    @keyframes talkFlash {
+      0%, 58% { opacity: 0; transform: translateX(-65%); }
+      67% { opacity: 0.7; }
+      82%, 100% { opacity: 0; transform: translateX(65%); }
+    }
+
+    @keyframes talkStar {
+      0%, 100% { opacity: 0.35; transform: scale(0.72) rotate(0); }
+      50% { opacity: 1; transform: scale(1.18) rotate(45deg); }
+    }
+
+    @keyframes talkScroll {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
     }
 
     .hero {
@@ -303,7 +703,7 @@
       box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
     }
 
-    h1 {
+    .hero-title {
       margin: 0;
       max-width: 760px;
       font-size: 6.45rem;
@@ -1005,6 +1405,22 @@
     }
 
     @media (max-width: 980px) {
+      .talk-inner {
+        width: min(var(--max), calc(100% - 32px));
+      }
+
+      .talk-photo img {
+        width: 76%;
+      }
+
+      .talk-copy {
+        width: min(58%, 590px);
+      }
+
+      .talk-logo-stage {
+        width: min(310px, 36vw);
+      }
+
       .header-inner {
         width: min(var(--max), calc(100% - 32px));
       }
@@ -1020,7 +1436,7 @@
         padding: 112px 0 42px;
       }
 
-      h1 {
+      .hero-title {
         font-size: 5.6rem;
       }
 
@@ -1061,6 +1477,114 @@
     }
 
     @media (max-width: 680px) {
+      .talk-show,
+      .talk-inner {
+        min-height: 92svh;
+      }
+
+      .talk-show::before {
+        background-size: 48px 48px;
+        -webkit-mask-image: linear-gradient(0deg, #000, transparent 92%);
+        mask-image: linear-gradient(0deg, #000, transparent 92%);
+      }
+
+      .talk-show::after {
+        left: -0.08em;
+        bottom: -0.12em;
+        font-size: 4.5rem;
+      }
+
+      .talk-photo img {
+        width: 100%;
+        margin-left: 0;
+        object-position: center 34%;
+        filter: contrast(1.04) saturate(0.9);
+      }
+
+      .talk-photo::before {
+        background:
+          linear-gradient(0deg, #130422 0%, rgba(25, 5, 43, 0.92) 24%, rgba(43, 8, 69, 0.15) 58%, rgba(18, 4, 32, 0.62) 100%),
+          linear-gradient(90deg, rgba(23, 4, 41, 0.72), transparent 58%, rgba(55, 8, 86, 0.22));
+      }
+
+      .talk-photo::after {
+        opacity: 0.34;
+      }
+
+      .talk-inner {
+        width: min(var(--max), calc(100% - 32px));
+        padding: 84px 0 62px;
+        align-items: stretch;
+      }
+
+      .talk-copy {
+        width: 100%;
+        min-height: calc(92svh - 146px);
+      }
+
+      .talk-kicker {
+        gap: 9px;
+        margin-bottom: 8px;
+        font-size: 0.64rem;
+        letter-spacing: 0.11em;
+      }
+
+      .talk-kicker::before {
+        width: 28px;
+      }
+
+      .talk-announcement-main {
+        font-size: clamp(2rem, 10.5vw, 2.8rem);
+      }
+
+      .talk-announcement-hit {
+        font-size: clamp(3.8rem, 18vw, 5.2rem);
+        text-shadow:
+          3px 3px 0 #7c0ae0,
+          6px 6px 0 rgba(237, 29, 204, 0.46),
+          0 0 28px rgba(238, 255, 56, 0.48);
+      }
+
+      .talk-logo-stage {
+        width: min(320px, 84vw);
+        margin: auto auto -4px;
+      }
+
+      .talk-ticket {
+        width: min(100%, 340px);
+        min-width: 0;
+        min-height: 54px;
+        align-self: center;
+        padding-block: 10px;
+        box-shadow:
+          6px 6px 0 rgba(124, 10, 224, 0.92),
+          0 16px 38px rgba(80, 0, 145, 0.38);
+      }
+
+      .talk-side-label {
+        display: none;
+      }
+
+      .talk-scroll {
+        right: 16px;
+        bottom: 12px;
+        font-size: 0.6rem;
+      }
+
+      .talk-scroll::after {
+        width: 28px;
+        height: 28px;
+      }
+
+      .talk-beam {
+        left: -28vw;
+        width: 112vw;
+      }
+
+      .talk-star.star-1 { top: 26%; left: 9%; }
+      .talk-star.star-2 { top: 62%; left: 83%; }
+      .talk-star.star-3 { display: none; }
+
       .site-header {
         background: rgba(9, 9, 9, 0.76);
       }
@@ -1109,7 +1633,7 @@
         font-size: 0.8rem;
       }
 
-      h1 {
+      .hero-title {
         font-size: 3.15rem;
       }
 
@@ -1202,6 +1726,29 @@
       }
     }
 
+    @media (max-width: 680px) and (max-height: 740px) {
+      .talk-inner {
+        padding-top: 76px;
+        padding-bottom: 52px;
+      }
+
+      .talk-announcement-main {
+        font-size: 1.85rem;
+      }
+
+      .talk-announcement-hit {
+        font-size: 3.45rem;
+      }
+
+      .talk-logo-stage {
+        width: min(238px, 66vw);
+      }
+
+      .talk-ticket {
+        min-height: 50px;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *,
       *::before,
@@ -1217,7 +1764,7 @@
 <body>
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
-      <a class="brand" href="./" aria-label="JACK ホームへ">
+      <a class="brand" href="#top" aria-label="JACK ホームへ">
         <span class="brand-mark"><img src="jack-logo-cutout.png" alt=""></span>
         <span class="brand-text">
           <strong>JACK</strong>
@@ -1235,7 +1782,41 @@
   </header>
 
   <main id="top">
-    <section class="hero" aria-labelledby="heroTitle">
+    <section class="talk-show" id="talkshow" aria-labelledby="talkShowTitle">
+      <div class="talk-photo">
+        <img src="aoi-shouta-talkshow.jpg" alt="蒼井翔太">
+      </div>
+      <div class="talk-fx" aria-hidden="true">
+        <span class="talk-beam"></span>
+        <span class="talk-beam"></span>
+        <span class="talk-beam"></span>
+        <span class="talk-flash"></span>
+        <span class="talk-star star-1">✦</span>
+        <span class="talk-star star-2">✦</span>
+        <span class="talk-star star-3">✦</span>
+      </div>
+      <div class="talk-inner">
+        <div class="talk-copy">
+          <p class="talk-kicker">JACK Presents / Special Event 2026</p>
+          <h1 class="talk-announcement" id="talkShowTitle">
+            <span class="talk-announcement-main">トークショー</span>
+            <span class="talk-announcement-hit">決定！</span>
+          </h1>
+          <div class="talk-logo-stage">
+            <img class="talk-event-logo" src="aoi-talkshow-logo.png" alt="蒼井翔太研究会 2026">
+          </div>
+          <a class="talk-ticket" href="https://livepocket.jp/e/aigop" target="_blank" rel="noopener" aria-label="LivePocketでトークショーのチケットページを開く">
+            <strong>チケットはこちら</strong>
+            <small>LivePocket</small>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+      <span class="talk-side-label" aria-hidden="true">Shouta Aoi / Talk Show / JACK 2026</span>
+      <a class="talk-scroll" href="#jack">JACK Site</a>
+    </section>
+
+    <section class="hero" id="jack" aria-labelledby="heroTitle">
       <div class="hero-media" aria-hidden="true">
         <div class="hero-slide"></div>
         <div class="hero-slide"></div>
@@ -1245,11 +1826,11 @@
       <div class="hero-inner">
         <div class="hero-copy reveal visible">
           <p class="eyebrow">慶應義塾大学 公認サークル</p>
-          <h1 id="heroTitle">
+          <h2 class="hero-title" id="heroTitle">
             <span class="h1-outline">Japan</span><br>
             <span class="h1-red">Anime</span><br>
             Culture
-          </h1>
+          </h2>
           <p class="hero-lead">
             声優・アニメ業界の方々をお招きし、学園祭で記憶に残るイベントをつくる。
             ジャパンアニメカルチャー研究会は、アニメ文化を中心に人と企画が集まる慶應義塾大学のサークルです。
