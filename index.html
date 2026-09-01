@@ -1092,12 +1092,6 @@
       align-items: start;
     }
 
-    .section-kicker {
-      margin: 0 0 12px;
-      color: var(--red);
-      font-size: 0.9rem;
-    }
-
     .section-title {
       margin: 0;
       font-size: 3.25rem;
@@ -1190,7 +1184,7 @@
 
     .about-title-large span {
       position: absolute;
-      top: -100px;
+      top: -112px;
       right: clamp(12px, 4vw, 64px);
       z-index: 2;
       width: fit-content;
@@ -1207,6 +1201,9 @@
       transform: rotate(-5deg);
       transform-origin: center;
       white-space: nowrap;
+      opacity: 0;
+      clip-path: inset(-35% 105% -35% -10%);
+      will-change: clip-path, opacity;
     }
 
     .about-story {
@@ -1320,6 +1317,10 @@
       transform: translateY(0);
     }
 
+    .about-feature.visible .about-title-large span {
+      animation: signatureWrite 1.8s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
     .about-feature.visible .about-story > :nth-child(1) { transition-delay: 0.08s; }
     .about-feature.visible .about-story > :nth-child(2) { transition-delay: 0.16s; }
     .about-feature.visible .about-story > :nth-child(3) { transition-delay: 0.24s; }
@@ -1331,6 +1332,29 @@
     @keyframes aboutBandShift {
       from { background-position: -30px 0, 0 0; }
       to { background-position: 46px 0, 0 0; }
+    }
+
+    @keyframes signatureWrite {
+      0% {
+        clip-path: inset(-35% 105% -35% -10%);
+        opacity: 0;
+      }
+      8% {
+        opacity: 1;
+      }
+      36% {
+        clip-path: inset(-35% 62% -35% -10%);
+      }
+      64% {
+        clip-path: inset(-35% 31% -35% -10%);
+      }
+      84% {
+        clip-path: inset(-35% 10% -35% -10%);
+      }
+      100% {
+        clip-path: inset(-35% -12% -35% -10%);
+        opacity: 1;
+      }
     }
 
     .activity {
@@ -1430,10 +1454,6 @@
       font-weight: 900;
       letter-spacing: -0.1em;
       pointer-events: none;
-    }
-
-    .join .section-kicker {
-      color: #ff8ea2;
     }
 
     .join-layout {
@@ -2028,7 +2048,7 @@
       }
 
       .about-title-large span {
-        top: -62px;
+        top: -72px;
         right: 0;
         margin: 0;
         font-size: 3.25rem;
@@ -2266,7 +2286,6 @@
       <div class="section-inner">
         <div class="activity-head reveal">
           <div>
-            <p class="section-kicker">Activity</p>
             <h2 class="section-title" id="activityTitle">Event<br>Archive</h2>
           </div>
           <p class="activity-note">これまでの学園祭イベントでは、第一線で活躍される声優の方々をお招きしてきました。</p>
@@ -2304,7 +2323,6 @@
     <section class="section join" id="join" aria-labelledby="joinTitle">
       <div class="section-inner join-layout">
         <div class="join-copy reveal">
-          <p class="section-kicker">Join Us</p>
           <h2 class="section-title" id="joinTitle">Welcome<br>to JACK</h2>
           <p>イベントづくりに関わりたい方、アニメカルチャーを一緒に盛り上げたい方は、OpenChat・X・Instagramから最新情報をご確認ください。</p>
         </div>
