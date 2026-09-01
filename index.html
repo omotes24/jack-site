@@ -202,7 +202,7 @@
       filter: contrast(1.05) saturate(0.88);
       transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055);
       will-change: transform;
-      animation: talkPhotoIn 1.7s 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: talkPhotoIn 1.15s 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .talk-fireworks {
@@ -504,7 +504,7 @@
         -3px 0 0 rgba(255, 31, 76, 0.5),
         3px 0 0 rgba(31, 96, 255, 0.54),
         0 0 30px rgba(151, 73, 255, 0.62);
-      animation: talkTitleIn 0.86s 1.18s cubic-bezier(0.1, 1, 0.2, 1) both;
+      animation: talkTitleIn 0.66s 0.72s cubic-bezier(0.1, 1, 0.2, 1) both;
     }
 
     .talk-announcement-hit {
@@ -516,7 +516,7 @@
         -5px 4px 0 rgba(255, 31, 76, 0.82),
         6px 7px 0 rgba(31, 96, 255, 0.78),
         0 0 38px rgba(151, 73, 255, 0.72);
-      animation: talkHitIn 0.72s 1.56s cubic-bezier(0.08, 1.36, 0.35, 1) both;
+      animation: talkHitIn 0.56s 0.96s cubic-bezier(0.08, 1.36, 0.35, 1) both;
     }
 
     .talk-announcement-hit::after {
@@ -530,7 +530,7 @@
       background: linear-gradient(90deg, var(--magenta), var(--acid), transparent);
       transform: scaleX(0) rotate(-2deg);
       transform-origin: left;
-      animation: talkUnderline 0.55s 2s cubic-bezier(0.1, 1, 0.2, 1) forwards;
+      animation: talkUnderline 0.38s 1.24s cubic-bezier(0.1, 1, 0.2, 1) forwards;
     }
 
     .talk-announcement-hit::before {
@@ -545,7 +545,7 @@
         0 0 8px #fff,
         0 0 20px var(--acid),
         0 0 34px var(--magenta);
-      animation: talkTitleSpark 2.2s 2.12s ease-in-out infinite;
+      animation: talkTitleSpark 2s 1.32s ease-in-out infinite;
     }
 
     .talk-logo-stage {
@@ -561,7 +561,7 @@
         drop-shadow(-8px 7px 0 rgba(255, 31, 76, 0.64))
         drop-shadow(9px 10px 0 rgba(31, 96, 255, 0.62))
         drop-shadow(0 0 30px rgba(148, 64, 255, 0.58));
-      animation: talkLogoIn 1s 1.92s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: talkLogoIn 0.72s 1.14s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .talk-logo-stage::before {
@@ -586,7 +586,7 @@
       mix-blend-mode: screen;
       transform: rotate(14deg);
       pointer-events: none;
-      animation: talkLogoSheen 4.8s 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+      animation: talkLogoSheen 4.2s 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
     }
 
     .talk-event-logo {
@@ -598,7 +598,7 @@
         saturate(1.08)
         contrast(1.04)
         drop-shadow(0 12px 16px rgba(70, 13, 117, 0.24));
-      animation: talkLogoGlow 3.4s 2s ease-in-out infinite;
+      animation: talkLogoGlow 3.2s 1.45s ease-in-out infinite;
     }
 
     .talk-ticket {
@@ -621,7 +621,7 @@
         8px 8px 0 rgba(124, 10, 224, 0.92),
         0 18px 48px rgba(80, 0, 145, 0.42);
       transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-      animation: talkTicketIn 0.7s 2.42s both;
+      animation: talkTicketIn 0.52s 1.48s both;
     }
 
     .talk-ticket::before {
@@ -2304,7 +2304,7 @@
           y: fireworksHeight + 18,
           targetX,
           targetY,
-          speed: 11 + Math.random() * 3,
+          speed: 21 + Math.random() * 6,
           color,
           trail: []
         });
@@ -2336,7 +2336,7 @@
             vx: Math.cos(angle) * speed,
             vy: Math.sin(angle) * speed,
             alpha: 1,
-            decay: 0.009 + Math.random() * 0.007,
+            decay: 0.014 + Math.random() * 0.009,
             color,
             trail: []
           });
@@ -2349,7 +2349,7 @@
         fireworksContext.clearRect(0, 0, fireworksWidth, fireworksHeight);
         fireworksContext.globalCompositeOperation = "lighter";
 
-        if (time - lastFireworkLaunch > 1720) {
+        if (time - lastFireworkLaunch > 1050) {
           launchFirework();
           lastFireworkLaunch = time;
         }
@@ -2387,8 +2387,8 @@
 
         for (let i = burstRings.length - 1; i >= 0; i -= 1) {
           const ring = burstRings[i];
-          ring.radius += 3.4;
-          ring.alpha -= 0.022;
+          ring.radius += 5.2;
+          ring.alpha -= 0.034;
 
           if (ring.alpha <= 0) {
             burstRings.splice(i, 1);
@@ -2408,8 +2408,8 @@
           const spark = sparks[i];
           spark.trail.push({ x: spark.x, y: spark.y });
           if (spark.trail.length > 4) spark.trail.shift();
-          spark.vx *= 0.984;
-          spark.vy = spark.vy * 0.984 + 0.052;
+          spark.vx *= 0.978;
+          spark.vy = spark.vy * 0.978 + 0.07;
           spark.x += spark.vx;
           spark.y += spark.vy;
           spark.alpha -= spark.decay;
@@ -2472,7 +2472,7 @@
       window.addEventListener("resize", resizeFireworks, { passive: true });
       window.addEventListener("scroll", syncFireworksVisibility, { passive: true });
       syncFireworksVisibility();
-      [40, 340, 720].forEach((delay, index) => {
+      [0, 150, 320].forEach((delay, index) => {
         window.setTimeout(() => launchFirework(index), delay);
       });
     }
