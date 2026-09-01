@@ -1183,58 +1183,6 @@
       background: rgba(9, 9, 9, 0.2);
     }
 
-    .ticker {
-      position: relative;
-      overflow: hidden;
-      background: var(--red);
-      color: var(--white);
-    }
-
-    .ticker::before,
-    .ticker::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      z-index: 2;
-      width: 56px;
-      pointer-events: none;
-    }
-
-    .ticker::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--red), transparent);
-    }
-
-    .ticker::after {
-      right: 0;
-      background: linear-gradient(270deg, var(--red), transparent);
-    }
-
-    .ticker-track {
-      width: max-content;
-      display: flex;
-      animation: tickerScroll 22s linear infinite;
-      animation-delay: 0.8s;
-      will-change: transform;
-    }
-
-    .ticker-group {
-      display: flex;
-      flex: 0 0 auto;
-    }
-
-    .ticker span {
-      padding: 14px 0;
-      white-space: nowrap;
-      font-size: 0.88rem;
-    }
-
-    @keyframes tickerScroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
     .section {
       position: relative;
       padding: 96px 0;
@@ -1323,7 +1271,7 @@
     .about-feature-inner {
       position: relative;
       z-index: 1;
-      width: min(920px, calc(100% - 48px));
+      width: min(1240px, calc(100% - 48px));
       margin: 0 auto;
     }
 
@@ -1366,7 +1314,7 @@
     .about-story {
       display: grid;
       gap: 0;
-      max-width: 850px;
+      max-width: 1200px;
       margin: 0 auto;
       padding-top: 20px;
       text-align: center;
@@ -1374,10 +1322,11 @@
 
     .about-story p {
       margin: 0 auto;
-      font-size: clamp(1.2rem, 1.9vw, 1.55rem);
+      font-size: clamp(1.05rem, 1.6vw, 1.3rem);
       font-weight: 900;
       line-height: 1.85;
       letter-spacing: 0;
+      white-space: nowrap;
     }
 
     .about-opening {
@@ -1388,10 +1337,9 @@
     }
 
     .about-guest {
-      width: min(100%, 800px);
+      width: min(100%, 1120px);
       padding: 40px 0;
       color: rgba(255, 253, 248, 0.94);
-      text-wrap: pretty;
     }
 
     .about-name {
@@ -1400,7 +1348,7 @@
     }
 
     .about-profile {
-      width: min(100%, 740px);
+      width: min(100%, 1200px);
       padding: 34px 0;
       color: rgba(255, 253, 248, 0.78);
     }
@@ -1424,7 +1372,7 @@
     }
 
     .about-detail {
-      width: min(100%, 740px);
+      width: min(100%, 1100px);
       padding: 52px 0 38px;
       color: rgba(255, 253, 248, 0.86);
     }
@@ -1519,7 +1467,6 @@
     .timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-top: 2px solid var(--black);
       border-left: 1px solid rgba(0, 0, 0, 0.1);
     }
 
@@ -1921,6 +1868,14 @@
 
       .about-story {
         width: 100%;
+      }
+
+      .about-story p {
+        white-space: normal;
+      }
+
+      .about-story .about-opening {
+        white-space: nowrap;
       }
 
       .section-grid,
@@ -2459,23 +2414,6 @@
         </div>
       </div>
     </section>
-
-    <div class="ticker" aria-hidden="true">
-      <div class="ticker-track">
-        <div class="ticker-group">
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-        </div>
-        <div class="ticker-group">
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-          <span>JACK / Anime / Manga / Culture / Community / Keio University /&nbsp;</span>
-        </div>
-      </div>
-    </div>
 
     <section class="section activity" id="activity" aria-labelledby="activityTitle">
       <div class="section-inner">
