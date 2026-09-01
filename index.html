@@ -168,6 +168,7 @@
 
     /* Talk show campaign */
     .talk-show {
+      --photo-entry-y: -86px;
       --photo-shift-x: 0px;
       --photo-shift-y: 0px;
       --fx-shift-x: 0px;
@@ -191,6 +192,8 @@
     }
 
     .talk-photo img {
+      position: relative;
+      z-index: 0;
       width: 68%;
       height: 100%;
       margin-left: auto;
@@ -199,7 +202,19 @@
       filter: contrast(1.05) saturate(0.88);
       transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055);
       will-change: transform;
-      animation: talkPhotoIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: talkPhotoIn 1.7s 0.68s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .talk-fireworks {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      width: 100%;
+      height: 100%;
+      opacity: 0.94;
+      mix-blend-mode: screen;
+      filter: saturate(1.24) contrast(1.08);
+      pointer-events: none;
     }
 
     .talk-photo::before,
@@ -211,7 +226,7 @@
     }
 
     .talk-photo::before {
-      z-index: 1;
+      z-index: 2;
       background:
         linear-gradient(112deg, rgba(255, 24, 70, 0.22) 0%, rgba(130, 20, 205, 0.18) 48%, rgba(20, 87, 255, 0.27) 100%),
         linear-gradient(90deg, #10031d 0%, rgba(16, 3, 29, 0.98) 31%, rgba(55, 10, 91, 0.72) 52%, rgba(15, 3, 28, 0.12) 100%),
@@ -221,7 +236,7 @@
     }
 
     .talk-photo::after {
-      z-index: 2;
+      z-index: 3;
       background:
         repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.055) 0 1px, transparent 1px 5px),
         linear-gradient(120deg, transparent 0 58%, rgba(190, 118, 255, 0.22) 70%, transparent 82%);
@@ -489,7 +504,7 @@
         -3px 0 0 rgba(255, 31, 76, 0.5),
         3px 0 0 rgba(31, 96, 255, 0.54),
         0 0 30px rgba(151, 73, 255, 0.62);
-      animation: talkTitleIn 0.86s 0.22s cubic-bezier(0.1, 1, 0.2, 1) both;
+      animation: talkTitleIn 0.86s 1.18s cubic-bezier(0.1, 1, 0.2, 1) both;
     }
 
     .talk-announcement-hit {
@@ -501,7 +516,7 @@
         -5px 4px 0 rgba(255, 31, 76, 0.82),
         6px 7px 0 rgba(31, 96, 255, 0.78),
         0 0 38px rgba(151, 73, 255, 0.72);
-      animation: talkHitIn 0.72s 0.72s cubic-bezier(0.08, 1.36, 0.35, 1) both;
+      animation: talkHitIn 0.72s 1.56s cubic-bezier(0.08, 1.36, 0.35, 1) both;
     }
 
     .talk-announcement-hit::after {
@@ -515,7 +530,7 @@
       background: linear-gradient(90deg, var(--magenta), var(--acid), transparent);
       transform: scaleX(0) rotate(-2deg);
       transform-origin: left;
-      animation: talkUnderline 0.55s 1.25s cubic-bezier(0.1, 1, 0.2, 1) forwards;
+      animation: talkUnderline 0.55s 2s cubic-bezier(0.1, 1, 0.2, 1) forwards;
     }
 
     .talk-announcement-hit::before {
@@ -530,7 +545,7 @@
         0 0 8px #fff,
         0 0 20px var(--acid),
         0 0 34px var(--magenta);
-      animation: talkTitleSpark 2.2s 1.4s ease-in-out infinite;
+      animation: talkTitleSpark 2.2s 2.12s ease-in-out infinite;
     }
 
     .talk-logo-stage {
@@ -546,7 +561,7 @@
         drop-shadow(-8px 7px 0 rgba(255, 31, 76, 0.64))
         drop-shadow(9px 10px 0 rgba(31, 96, 255, 0.62))
         drop-shadow(0 0 30px rgba(148, 64, 255, 0.58));
-      animation: talkLogoIn 1s 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation: talkLogoIn 1s 1.92s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
     .talk-logo-stage::before {
@@ -606,7 +621,7 @@
         8px 8px 0 rgba(124, 10, 224, 0.92),
         0 18px 48px rgba(80, 0, 145, 0.42);
       transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
-      animation: talkTicketIn 0.7s 1.42s both;
+      animation: talkTicketIn 0.7s 2.42s both;
     }
 
     .talk-ticket::before {
@@ -691,8 +706,9 @@
     }
 
     @keyframes talkPhotoIn {
-      from { opacity: 0; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.13); }
-      to { opacity: 1; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055); }
+      0% { opacity: 0; transform: translate3d(var(--photo-shift-x), calc(var(--photo-shift-y) + var(--photo-entry-y)), 0) scale(1.14); }
+      68% { opacity: 1; transform: translate3d(var(--photo-shift-x), calc(var(--photo-shift-y) + 7px), 0) scale(1.066); }
+      100% { opacity: 1; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055); }
     }
 
     @keyframes talkColorPulse {
@@ -1703,6 +1719,10 @@
         min-height: 92svh;
       }
 
+      .talk-show {
+        --photo-entry-y: -58px;
+      }
+
       .talk-show::before {
         background-size: 48px 48px;
         -webkit-mask-image: linear-gradient(0deg, #000, transparent 92%);
@@ -2009,6 +2029,7 @@
     <section class="talk-show" id="talkshow" aria-labelledby="talkShowTitle">
       <div class="talk-photo">
         <img src="Photo10.JPG" alt="蒼井翔太">
+        <canvas class="talk-fireworks" aria-hidden="true"></canvas>
       </div>
       <div class="talk-fx" aria-hidden="true">
         <div class="talk-particles"></div>
@@ -2234,6 +2255,228 @@
     }
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const fireworksCanvas = talkShow?.querySelector(".talk-fireworks");
+
+    if (fireworksCanvas && !reducedMotion.matches) {
+      const fireworksContext = fireworksCanvas.getContext("2d", { alpha: true });
+      const fireworkColors = [
+        [255, 38, 82],
+        [42, 105, 255],
+        [165, 72, 255],
+        [255, 255, 255]
+      ];
+      const rockets = [];
+      const burstRings = [];
+      const sparks = [];
+      let fireworksWidth = 0;
+      let fireworksHeight = 0;
+      let fireworksFrame = 0;
+      let fireworksVisible = false;
+      let lastFireworkLaunch = performance.now();
+      let fireworkPatternIndex = 0;
+
+      const fireworkPatterns = () => fireworksWidth <= 680
+        ? [[0.12, 0.2], [0.88, 0.16], [0.08, 0.44], [0.92, 0.4]]
+        : [[0.38, 0.15], [0.9, 0.17], [0.43, 0.42], [0.92, 0.47], [0.76, 0.1]];
+
+      const resizeFireworks = () => {
+        const rect = fireworksCanvas.getBoundingClientRect();
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+        fireworksWidth = Math.max(1, rect.width);
+        fireworksHeight = Math.max(1, rect.height);
+        fireworksCanvas.width = Math.round(fireworksWidth * dpr);
+        fireworksCanvas.height = Math.round(fireworksHeight * dpr);
+        fireworksContext.setTransform(dpr, 0, 0, dpr, 0, 0);
+        rockets.length = 0;
+        burstRings.length = 0;
+        sparks.length = 0;
+      };
+
+      const launchFirework = (patternIndex = fireworkPatternIndex) => {
+        const patterns = fireworkPatterns();
+        const pattern = patterns[patternIndex % patterns.length];
+        const targetX = fireworksWidth * pattern[0];
+        const targetY = fireworksHeight * pattern[1];
+        const color = fireworkColors[patternIndex % fireworkColors.length];
+
+        rockets.push({
+          x: targetX + (Math.random() - 0.5) * fireworksWidth * 0.08,
+          y: fireworksHeight + 18,
+          targetX,
+          targetY,
+          speed: 11 + Math.random() * 3,
+          color,
+          trail: []
+        });
+        fireworkPatternIndex = (patternIndex + 1) % patterns.length;
+      };
+
+      const burstFirework = (rocket) => {
+        const count = fireworksWidth <= 680 ? 32 : 46;
+        burstRings.push({
+          x: rocket.targetX,
+          y: rocket.targetY,
+          radius: 4,
+          alpha: 1,
+          color: rocket.color
+        });
+
+        for (let i = 0; i < count; i += 1) {
+          const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.1;
+          const speed = 2.2 + Math.random() * 5.4;
+          const color = i % 9 === 0
+            ? fireworkColors[3]
+            : i % 5 === 0
+              ? fireworkColors[(fireworkPatternIndex + 1) % 3]
+              : rocket.color;
+
+          sparks.push({
+            x: rocket.targetX,
+            y: rocket.targetY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            alpha: 1,
+            decay: 0.009 + Math.random() * 0.007,
+            color,
+            trail: []
+          });
+        }
+      };
+
+      const rgba = (color, alpha) => `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
+
+      const renderFireworks = (time) => {
+        fireworksContext.clearRect(0, 0, fireworksWidth, fireworksHeight);
+        fireworksContext.globalCompositeOperation = "lighter";
+
+        if (time - lastFireworkLaunch > 1720) {
+          launchFirework();
+          lastFireworkLaunch = time;
+        }
+
+        for (let i = rockets.length - 1; i >= 0; i -= 1) {
+          const rocket = rockets[i];
+          const dx = rocket.targetX - rocket.x;
+          const dy = rocket.targetY - rocket.y;
+          const distance = Math.hypot(dx, dy);
+
+          rocket.trail.push({ x: rocket.x, y: rocket.y });
+          if (rocket.trail.length > 7) rocket.trail.shift();
+
+          if (distance <= rocket.speed) {
+            burstFirework(rocket);
+            rockets.splice(i, 1);
+            continue;
+          }
+
+          rocket.x += (dx / distance) * rocket.speed;
+          rocket.y += (dy / distance) * rocket.speed;
+
+          fireworksContext.beginPath();
+          const trailStart = rocket.trail[0] || rocket;
+          fireworksContext.moveTo(trailStart.x, trailStart.y);
+          fireworksContext.lineTo(rocket.x, rocket.y);
+          fireworksContext.strokeStyle = rgba(rocket.color, 0.78);
+          fireworksContext.lineWidth = 2.4;
+          fireworksContext.shadowColor = rgba(rocket.color, 0.9);
+          fireworksContext.shadowBlur = 12;
+          fireworksContext.stroke();
+          fireworksContext.fillStyle = rgba(fireworkColors[3], 0.94);
+          fireworksContext.fillRect(rocket.x - 1.5, rocket.y - 1.5, 3, 3);
+        }
+
+        for (let i = burstRings.length - 1; i >= 0; i -= 1) {
+          const ring = burstRings[i];
+          ring.radius += 3.4;
+          ring.alpha -= 0.022;
+
+          if (ring.alpha <= 0) {
+            burstRings.splice(i, 1);
+            continue;
+          }
+
+          fireworksContext.beginPath();
+          fireworksContext.arc(ring.x, ring.y, ring.radius, 0, Math.PI * 2);
+          fireworksContext.strokeStyle = rgba(ring.color, ring.alpha * 0.82);
+          fireworksContext.lineWidth = 2.4;
+          fireworksContext.shadowColor = rgba(ring.color, ring.alpha);
+          fireworksContext.shadowBlur = 20;
+          fireworksContext.stroke();
+        }
+
+        for (let i = sparks.length - 1; i >= 0; i -= 1) {
+          const spark = sparks[i];
+          spark.trail.push({ x: spark.x, y: spark.y });
+          if (spark.trail.length > 4) spark.trail.shift();
+          spark.vx *= 0.984;
+          spark.vy = spark.vy * 0.984 + 0.052;
+          spark.x += spark.vx;
+          spark.y += spark.vy;
+          spark.alpha -= spark.decay;
+
+          if (spark.alpha <= 0) {
+            sparks.splice(i, 1);
+            continue;
+          }
+
+          fireworksContext.beginPath();
+          const trailStart = spark.trail[0] || spark;
+          fireworksContext.moveTo(trailStart.x, trailStart.y);
+          fireworksContext.lineTo(spark.x, spark.y);
+          fireworksContext.strokeStyle = rgba(spark.color, spark.alpha * 0.9);
+          fireworksContext.lineWidth = spark.alpha > 0.55 ? 2.1 : 1.2;
+          fireworksContext.shadowColor = rgba(spark.color, spark.alpha);
+          fireworksContext.shadowBlur = 4;
+          fireworksContext.stroke();
+          fireworksContext.beginPath();
+          fireworksContext.arc(spark.x, spark.y, spark.alpha > 0.5 ? 1.45 : 0.9, 0, Math.PI * 2);
+          fireworksContext.fillStyle = rgba(spark.color, spark.alpha);
+          fireworksContext.fill();
+        }
+
+        // Keep the brightest sparks away from the face so the fireworks read as background.
+        fireworksContext.shadowBlur = 0;
+        fireworksContext.globalCompositeOperation = "destination-out";
+        const mobile = fireworksWidth <= 680;
+        const maskX = fireworksWidth * (mobile ? 0.5 : 0.69);
+        const maskY = fireworksHeight * (mobile ? 0.29 : 0.33);
+        const maskRadius = Math.min(fireworksWidth, fireworksHeight) * (mobile ? 0.23 : 0.25);
+        const faceMask = fireworksContext.createRadialGradient(maskX, maskY, 0, maskX, maskY, maskRadius);
+        faceMask.addColorStop(0, "rgba(0, 0, 0, 0.98)");
+        faceMask.addColorStop(0.52, "rgba(0, 0, 0, 0.82)");
+        faceMask.addColorStop(1, "rgba(0, 0, 0, 0)");
+        fireworksContext.fillStyle = faceMask;
+        fireworksContext.fillRect(0, 0, fireworksWidth, fireworksHeight);
+        fireworksContext.globalCompositeOperation = "source-over";
+
+        if (fireworksVisible) {
+          fireworksFrame = window.requestAnimationFrame(renderFireworks);
+        } else {
+          fireworksFrame = 0;
+        }
+      };
+
+      const syncFireworksVisibility = () => {
+        const rect = talkShow.getBoundingClientRect();
+        fireworksVisible = rect.bottom > 0 && rect.top < window.innerHeight;
+        if (fireworksVisible && !fireworksFrame) {
+          lastFireworkLaunch = performance.now();
+          fireworksFrame = window.requestAnimationFrame(renderFireworks);
+        } else if (!fireworksVisible && fireworksFrame) {
+          window.cancelAnimationFrame(fireworksFrame);
+          fireworksFrame = 0;
+        }
+      };
+
+      resizeFireworks();
+      window.addEventListener("resize", resizeFireworks, { passive: true });
+      window.addEventListener("scroll", syncFireworksVisibility, { passive: true });
+      syncFireworksVisibility();
+      [40, 340, 720].forEach((delay, index) => {
+        window.setTimeout(() => launchFirework(index), delay);
+      });
+    }
+
     if (talkShow && !reducedMotion.matches) {
       let pointerX = 0;
       let pointerY = 0;
