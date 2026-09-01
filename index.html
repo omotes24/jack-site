@@ -213,8 +213,11 @@
     .talk-photo::before {
       z-index: 1;
       background:
+        linear-gradient(112deg, rgba(255, 24, 70, 0.22) 0%, rgba(130, 20, 205, 0.18) 48%, rgba(20, 87, 255, 0.27) 100%),
         linear-gradient(90deg, #10031d 0%, rgba(16, 3, 29, 0.98) 31%, rgba(55, 10, 91, 0.72) 52%, rgba(15, 3, 28, 0.12) 100%),
         linear-gradient(0deg, rgba(14, 2, 27, 0.8) 0%, transparent 44%, rgba(58, 10, 93, 0.14) 100%);
+      background-size: 145% 100%, 100% 100%, 100% 100%;
+      animation: talkColorPulse 7.2s ease-in-out infinite alternate;
     }
 
     .talk-photo::after {
@@ -264,6 +267,34 @@
       pointer-events: none;
       transform: translate3d(var(--fx-shift-x), var(--fx-shift-y), 0) scale(1.04);
       will-change: transform;
+    }
+
+    .talk-fx::before,
+    .talk-fx::after {
+      content: "";
+      position: absolute;
+      top: -18%;
+      z-index: 0;
+      width: 76%;
+      height: 136%;
+      opacity: 0.34;
+      mix-blend-mode: screen;
+      filter: blur(14px);
+      pointer-events: none;
+    }
+
+    .talk-fx::before {
+      left: -52%;
+      background: linear-gradient(110deg, transparent 28%, rgba(255, 24, 70, 0.82) 47%, rgba(255, 89, 126, 0.28) 58%, transparent 72%);
+      clip-path: polygon(0 28%, 100% 8%, 100% 62%, 0 80%);
+      animation: talkRedSweep 6.8s ease-in-out infinite;
+    }
+
+    .talk-fx::after {
+      right: -52%;
+      background: linear-gradient(70deg, transparent 28%, rgba(20, 87, 255, 0.86) 47%, rgba(102, 164, 255, 0.3) 58%, transparent 72%);
+      clip-path: polygon(0 8%, 100% 28%, 100% 80%, 0 62%);
+      animation: talkBlueSweep 6.8s 0.7s ease-in-out infinite;
     }
 
     .talk-particles {
@@ -323,6 +354,7 @@
     .talk-flare.flare-1 {
       --flare-size: 170px;
       --flare-delay: 0.3s;
+      --flare-color: rgba(48, 111, 255, 0.96);
       top: 9%;
       left: 43%;
     }
@@ -330,7 +362,7 @@
     .talk-flare.flare-2 {
       --flare-size: 118px;
       --flare-delay: 1.6s;
-      --flare-color: rgba(238, 255, 56, 0.9);
+      --flare-color: rgba(255, 31, 76, 0.96);
       top: 38%;
       right: 4%;
     }
@@ -338,7 +370,7 @@
     .talk-flare.flare-3 {
       --flare-size: 92px;
       --flare-delay: 2.5s;
-      --flare-color: rgba(255, 66, 218, 0.92);
+      --flare-color: rgba(164, 62, 255, 0.94);
       left: 34%;
       bottom: 5%;
     }
@@ -349,7 +381,7 @@
       width: 18px;
       height: 52px;
       border: 1px solid rgba(255, 255, 255, 0.58);
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(238, 255, 56, 0.18) 33%, rgba(239, 29, 204, 0.32) 66%, transparent);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.72), rgba(255, 31, 76, 0.3) 30%, rgba(151, 50, 255, 0.38) 54%, rgba(31, 96, 255, 0.34) 76%, transparent);
       clip-path: polygon(50% 0, 100% 32%, 68% 100%, 0 78%, 18% 16%);
       mix-blend-mode: screen;
       filter: drop-shadow(0 0 12px rgba(216, 142, 255, 0.72));
@@ -367,8 +399,10 @@
       left: -12vw;
       width: 78vw;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(238, 255, 56, 0.92), rgba(239, 29, 204, 0.6), transparent);
-      box-shadow: 0 0 18px rgba(221, 86, 255, 0.78);
+      background: linear-gradient(90deg, transparent, rgba(255, 30, 74, 0.94), rgba(154, 52, 255, 0.96), rgba(30, 96, 255, 0.94), transparent);
+      box-shadow:
+        -8px 0 20px rgba(255, 30, 74, 0.62),
+        8px 0 22px rgba(30, 96, 255, 0.68);
       transform-origin: left center;
       transform: rotate(var(--beam-angle)) scaleX(0);
       animation: talkBeam 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
@@ -396,7 +430,7 @@
     .talk-flash {
       position: absolute;
       inset: -30%;
-      background: linear-gradient(108deg, transparent 42%, rgba(255, 255, 255, 0.72) 49%, rgba(212, 147, 255, 0.32) 53%, transparent 60%);
+      background: linear-gradient(108deg, transparent 40%, rgba(255, 38, 80, 0.38) 46%, rgba(255, 255, 255, 0.78) 50%, rgba(43, 106, 255, 0.44) 55%, transparent 62%);
       mix-blend-mode: screen;
       transform: translateX(-65%);
       animation: talkFlash 5.2s ease-in-out infinite;
@@ -451,7 +485,10 @@
     .talk-announcement-main {
       font-size: clamp(2.4rem, 4.4vw, 4.6rem);
       color: var(--white);
-      text-shadow: 0 0 28px rgba(191, 111, 255, 0.5);
+      text-shadow:
+        -3px 0 0 rgba(255, 31, 76, 0.5),
+        3px 0 0 rgba(31, 96, 255, 0.54),
+        0 0 30px rgba(151, 73, 255, 0.62);
       animation: talkTitleIn 0.86s 0.22s cubic-bezier(0.1, 1, 0.2, 1) both;
     }
 
@@ -461,9 +498,9 @@
       color: var(--acid);
       font-size: clamp(4.2rem, 7.4vw, 7.5rem);
       text-shadow:
-        4px 4px 0 #7c0ae0,
-        8px 8px 0 rgba(237, 29, 204, 0.46),
-        0 0 34px rgba(238, 255, 56, 0.52);
+        -5px 4px 0 rgba(255, 31, 76, 0.82),
+        6px 7px 0 rgba(31, 96, 255, 0.78),
+        0 0 38px rgba(151, 73, 255, 0.72);
       animation: talkHitIn 0.72s 0.72s cubic-bezier(0.08, 1.36, 0.35, 1) both;
     }
 
@@ -506,8 +543,9 @@
         linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 224, 255, 0.94) 58%, rgba(255, 255, 255, 0.84));
       clip-path: polygon(4% 0, 100% 0, 96% 92%, 72% 100%, 0 95%, 0 8%);
       filter:
-        drop-shadow(9px 9px 0 rgba(237, 29, 204, 0.7))
-        drop-shadow(0 0 28px rgba(148, 64, 255, 0.42));
+        drop-shadow(-8px 7px 0 rgba(255, 31, 76, 0.64))
+        drop-shadow(9px 10px 0 rgba(31, 96, 255, 0.62))
+        drop-shadow(0 0 30px rgba(148, 64, 255, 0.58));
       animation: talkLogoIn 1s 1.05s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
@@ -529,7 +567,7 @@
       left: -52%;
       z-index: 2;
       width: 27%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), rgba(238, 255, 56, 0.38), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 37, 78, 0.5), rgba(255, 255, 255, 0.9), rgba(42, 105, 255, 0.52), transparent);
       mix-blend-mode: screen;
       transform: rotate(14deg);
       pointer-events: none;
@@ -583,12 +621,32 @@
       animation: talkTicketSheen 3.8s 2.8s ease-in-out infinite;
     }
 
-    .talk-ticket:hover {
+    .talk-ticket:not(.is-sold-out):hover {
       transform: translate(-3px, -3px);
       background: #f5ff73;
       box-shadow:
         12px 12px 0 rgba(237, 29, 204, 0.92),
         0 24px 56px rgba(80, 0, 145, 0.5);
+    }
+
+    .talk-ticket.is-sold-out {
+      cursor: default;
+      border-color: rgba(255, 255, 255, 0.74);
+      background: linear-gradient(112deg, #ef1f4c 0%, #952fff 48%, #1f60ff 100%);
+      color: #fff;
+      box-shadow:
+        -6px 7px 0 rgba(255, 31, 76, 0.74),
+        7px 9px 0 rgba(31, 96, 255, 0.72),
+        0 20px 52px rgba(116, 39, 255, 0.52);
+    }
+
+    .talk-ticket.is-sold-out strong {
+      font-size: 1.08rem;
+      letter-spacing: 0.12em;
+    }
+
+    .talk-ticket.is-sold-out small {
+      color: rgba(255, 255, 255, 0.78);
     }
 
     .talk-ticket strong {
@@ -635,6 +693,23 @@
     @keyframes talkPhotoIn {
       from { opacity: 0; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.13); }
       to { opacity: 1; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055); }
+    }
+
+    @keyframes talkColorPulse {
+      from { background-position: 0% 50%, 0 0, 0 0; }
+      to { background-position: 100% 50%, 0 0, 0 0; }
+    }
+
+    @keyframes talkRedSweep {
+      0%, 16% { opacity: 0.12; transform: translate3d(-12%, 0, 0) rotate(-4deg); }
+      48% { opacity: 0.48; transform: translate3d(96%, 0, 0) rotate(3deg); }
+      76%, 100% { opacity: 0.08; transform: translate3d(148%, 0, 0) rotate(6deg); }
+    }
+
+    @keyframes talkBlueSweep {
+      0%, 12% { opacity: 0.1; transform: translate3d(12%, 0, 0) rotate(4deg); }
+      52% { opacity: 0.5; transform: translate3d(-96%, 0, 0) rotate(-3deg); }
+      80%, 100% { opacity: 0.08; transform: translate3d(-148%, 0, 0) rotate(-6deg); }
     }
 
     @keyframes talkTitleIn {
@@ -1649,8 +1724,10 @@
 
       .talk-photo::before {
         background:
+          linear-gradient(118deg, rgba(255, 24, 70, 0.2) 0%, rgba(132, 24, 209, 0.16) 48%, rgba(20, 87, 255, 0.24) 100%),
           linear-gradient(0deg, #130422 0%, rgba(25, 5, 43, 0.92) 24%, rgba(43, 8, 69, 0.15) 58%, rgba(18, 4, 32, 0.62) 100%),
           linear-gradient(90deg, rgba(23, 4, 41, 0.72), transparent 58%, rgba(55, 8, 86, 0.22));
+        background-size: 145% 100%, 100% 100%, 100% 100%;
       }
 
       .talk-photo::after {
@@ -1675,9 +1752,9 @@
       .talk-announcement-hit {
         font-size: clamp(3.8rem, 18vw, 5.2rem);
         text-shadow:
-          3px 3px 0 #7c0ae0,
-          6px 6px 0 rgba(237, 29, 204, 0.46),
-          0 0 28px rgba(238, 255, 56, 0.48);
+          -4px 3px 0 rgba(255, 31, 76, 0.82),
+          5px 5px 0 rgba(31, 96, 255, 0.78),
+          0 0 30px rgba(151, 73, 255, 0.7);
       }
 
       .talk-logo-stage {
@@ -1959,11 +2036,11 @@
           <div class="talk-logo-stage">
             <img class="talk-event-logo" src="Photo11.JPG" alt="蒼井翔太研究会 2026">
           </div>
-          <a class="talk-ticket" href="https://livepocket.jp/e/aigop" target="_blank" rel="noopener" aria-label="蒼井翔太研究会2026のチケットページを開く">
-            <strong>チケットはこちら</strong>
+          <div class="talk-ticket is-sold-out" role="status" aria-label="蒼井翔太研究会2026のチケットは完売しました">
+            <strong>SOLD OUT</strong>
             <small>蒼井翔太研究会2026</small>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"/></svg>
+          </div>
         </div>
       </div>
       <span class="talk-side-label" aria-hidden="true">Shouta Aoi / Talk Show / JACK 2026</span>
@@ -2136,7 +2213,7 @@
     const particleField = talkShow?.querySelector(".talk-particles");
 
     if (particleField) {
-      const sparkColors = ["#ffffff", "#eeff38", "#ff55dd", "#c68cff"];
+      const sparkColors = ["#ffffff", "#ff294f", "#336dff", "#ad54ff"];
       for (let i = 0; i < 28; i += 1) {
         const particle = document.createElement("span");
         const x = 3 + ((i * 37) % 94);
