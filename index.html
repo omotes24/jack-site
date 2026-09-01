@@ -168,6 +168,12 @@
 
     /* Talk show campaign */
     .talk-show {
+      --photo-shift-x: 0px;
+      --photo-shift-y: 0px;
+      --fx-shift-x: 0px;
+      --fx-shift-y: 0px;
+      --content-shift-x: 0px;
+      --content-shift-y: 0px;
       position: relative;
       min-height: 92svh;
       isolation: isolate;
@@ -191,7 +197,8 @@
       object-fit: cover;
       object-position: center 39%;
       filter: contrast(1.05) saturate(0.88);
-      transform: scale(1.035);
+      transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055);
+      will-change: transform;
       animation: talkPhotoIn 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
     }
 
@@ -251,11 +258,108 @@
 
     .talk-fx {
       position: absolute;
-      inset: 0;
+      inset: -4%;
       z-index: 2;
       overflow: hidden;
       pointer-events: none;
+      transform: translate3d(var(--fx-shift-x), var(--fx-shift-y), 0) scale(1.04);
+      will-change: transform;
     }
+
+    .talk-particles {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .talk-particle {
+      --spark-color: #ffffff;
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      width: var(--size);
+      height: var(--size);
+      background: var(--spark-color);
+      clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+      filter: drop-shadow(0 0 6px var(--spark-color));
+      opacity: 0;
+      animation: talkParticle var(--duration) var(--delay) ease-in-out infinite;
+    }
+
+    .talk-flare {
+      --flare-color: rgba(236, 177, 255, 0.9);
+      position: absolute;
+      z-index: 1;
+      width: var(--flare-size);
+      height: var(--flare-size);
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff 0 2%, var(--flare-color) 3% 8%, rgba(184, 87, 255, 0.18) 18%, transparent 54%);
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 16px var(--flare-color));
+      animation: talkFlare 4.6s var(--flare-delay) ease-in-out infinite;
+    }
+
+    .talk-flare::before,
+    .talk-flare::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      background: linear-gradient(90deg, transparent, var(--flare-color), #fff, var(--flare-color), transparent);
+      transform: translate(-50%, -50%);
+    }
+
+    .talk-flare::before {
+      width: 150%;
+      height: 1px;
+    }
+
+    .talk-flare::after {
+      width: 1px;
+      height: 150%;
+      background: linear-gradient(0deg, transparent, var(--flare-color), #fff, var(--flare-color), transparent);
+    }
+
+    .talk-flare.flare-1 {
+      --flare-size: 170px;
+      --flare-delay: 0.3s;
+      top: 9%;
+      left: 43%;
+    }
+
+    .talk-flare.flare-2 {
+      --flare-size: 118px;
+      --flare-delay: 1.6s;
+      --flare-color: rgba(238, 255, 56, 0.9);
+      top: 38%;
+      right: 4%;
+    }
+
+    .talk-flare.flare-3 {
+      --flare-size: 92px;
+      --flare-delay: 2.5s;
+      --flare-color: rgba(255, 66, 218, 0.92);
+      left: 34%;
+      bottom: 5%;
+    }
+
+    .talk-prism {
+      position: absolute;
+      z-index: 1;
+      width: 18px;
+      height: 52px;
+      border: 1px solid rgba(255, 255, 255, 0.58);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.7), rgba(238, 255, 56, 0.18) 33%, rgba(239, 29, 204, 0.32) 66%, transparent);
+      clip-path: polygon(50% 0, 100% 32%, 68% 100%, 0 78%, 18% 16%);
+      mix-blend-mode: screen;
+      filter: drop-shadow(0 0 12px rgba(216, 142, 255, 0.72));
+      animation: talkPrism 6s var(--prism-delay) ease-in-out infinite;
+    }
+
+    .talk-prism.prism-1 { top: 21%; left: 36%; --prism-delay: 0s; --prism-rotate: 28deg; --prism-scale: 1; }
+    .talk-prism.prism-2 { top: 68%; right: 17%; --prism-delay: 1.2s; --prism-rotate: -22deg; --prism-scale: 0.72; }
+    .talk-prism.prism-3 { top: 13%; right: 22%; --prism-delay: 2.4s; --prism-rotate: 48deg; --prism-scale: 0.56; }
+    .talk-prism.prism-4 { bottom: 9%; left: 53%; --prism-delay: 3.1s; --prism-rotate: 12deg; --prism-scale: 0.48; }
 
     .talk-beam {
       --beam-angle: -8deg;
@@ -270,19 +374,19 @@
       animation: talkBeam 3.8s cubic-bezier(0.16, 1, 0.3, 1) infinite;
     }
 
-    .talk-beam:nth-child(1) {
+    .talk-beam.beam-1 {
       top: 23%;
       --beam-angle: -8deg;
       animation-delay: 0.15s;
     }
 
-    .talk-beam:nth-child(2) {
+    .talk-beam.beam-2 {
       top: 63%;
       --beam-angle: 7deg;
       animation-delay: 0.55s;
     }
 
-    .talk-beam:nth-child(3) {
+    .talk-beam.beam-3 {
       top: 81%;
       width: 56vw;
       --beam-angle: -4deg;
@@ -319,6 +423,8 @@
       padding: 88px 0 28px;
       display: flex;
       align-items: center;
+      transform: translate3d(var(--content-shift-x), var(--content-shift-y), 0);
+      will-change: transform;
     }
 
     .talk-copy {
@@ -375,11 +481,27 @@
       animation: talkUnderline 0.55s 1.25s cubic-bezier(0.1, 1, 0.2, 1) forwards;
     }
 
+    .talk-announcement-hit::before {
+      content: "✦";
+      position: absolute;
+      top: -0.16em;
+      right: -0.26em;
+      color: #fff;
+      font-size: 0.32em;
+      letter-spacing: 0;
+      text-shadow:
+        0 0 8px #fff,
+        0 0 20px var(--acid),
+        0 0 34px var(--magenta);
+      animation: talkTitleSpark 2.2s 1.4s ease-in-out infinite;
+    }
+
     .talk-logo-stage {
       position: relative;
       width: min(326px, 31vw);
       margin: 4px 0 2px;
       padding: 12px;
+      overflow: hidden;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(241, 224, 255, 0.94) 58%, rgba(255, 255, 255, 0.84));
       clip-path: polygon(4% 0, 100% 0, 96% 92%, 72% 100%, 0 95%, 0 8%);
@@ -399,6 +521,21 @@
       pointer-events: none;
     }
 
+    .talk-logo-stage::after {
+      content: "";
+      position: absolute;
+      top: -32%;
+      bottom: -32%;
+      left: -52%;
+      z-index: 2;
+      width: 27%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.82), rgba(238, 255, 56, 0.38), transparent);
+      mix-blend-mode: screen;
+      transform: rotate(14deg);
+      pointer-events: none;
+      animation: talkLogoSheen 4.8s 2.2s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    }
+
     .talk-event-logo {
       position: relative;
       z-index: 1;
@@ -412,6 +549,7 @@
     }
 
     .talk-ticket {
+      position: relative;
       min-height: 58px;
       min-width: 310px;
       display: inline-grid;
@@ -422,6 +560,8 @@
       border: 1px solid rgba(238, 255, 56, 0.8);
       border-radius: 6px;
       padding: 12px 16px 12px 20px;
+      overflow: hidden;
+      isolation: isolate;
       background: var(--acid);
       color: #180626;
       box-shadow:
@@ -429,6 +569,18 @@
         0 18px 48px rgba(80, 0, 145, 0.42);
       transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
       animation: talkTicketIn 0.7s 1.42s both;
+    }
+
+    .talk-ticket::before {
+      content: "";
+      position: absolute;
+      inset: -70% auto -70% -38%;
+      z-index: 0;
+      width: 24%;
+      background: rgba(255, 255, 255, 0.76);
+      transform: rotate(18deg);
+      filter: blur(1px);
+      animation: talkTicketSheen 3.8s 2.8s ease-in-out infinite;
     }
 
     .talk-ticket:hover {
@@ -440,12 +592,16 @@
     }
 
     .talk-ticket strong {
+      position: relative;
+      z-index: 1;
       grid-column: 1;
       font-size: 1rem;
       line-height: 1.2;
     }
 
     .talk-ticket small {
+      position: relative;
+      z-index: 1;
       grid-column: 1;
       color: rgba(24, 6, 38, 0.68);
       font-size: 0.68rem;
@@ -455,6 +611,8 @@
     }
 
     .talk-ticket svg {
+      position: relative;
+      z-index: 1;
       grid-column: 2;
       grid-row: 1 / 3;
       width: 24px;
@@ -475,8 +633,8 @@
     }
 
     @keyframes talkPhotoIn {
-      from { opacity: 0; transform: scale(1.12); }
-      to { opacity: 1; transform: scale(1.035); }
+      from { opacity: 0; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.13); }
+      to { opacity: 1; transform: translate3d(var(--photo-shift-x), var(--photo-shift-y), 0) scale(1.055); }
     }
 
     @keyframes talkTitleIn {
@@ -504,9 +662,21 @@
       50% { filter: brightness(1.14) saturate(1.16) contrast(1.06) drop-shadow(0 12px 22px rgba(143, 34, 213, 0.4)); }
     }
 
+    @keyframes talkLogoSheen {
+      0%, 58% { left: -52%; opacity: 0; }
+      66% { opacity: 0.92; }
+      84%, 100% { left: 128%; opacity: 0; }
+    }
+
     @keyframes talkTicketIn {
       from { opacity: 0; transform: translateY(18px); }
       to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes talkTicketSheen {
+      0%, 54% { transform: translateX(0) rotate(18deg); opacity: 0; }
+      62% { opacity: 0.72; }
+      79%, 100% { transform: translateX(720%) rotate(18deg); opacity: 0; }
     }
 
     @keyframes talkBeam {
@@ -524,6 +694,28 @@
     @keyframes talkStar {
       0%, 100% { opacity: 0.35; transform: scale(0.72) rotate(0); }
       50% { opacity: 1; transform: scale(1.18) rotate(45deg); }
+    }
+
+    @keyframes talkParticle {
+      0%, 100% { opacity: 0.12; transform: translate3d(0, 12px, 0) scale(0.45) rotate(0); }
+      38% { opacity: 0.92; }
+      62% { opacity: 0.46; transform: translate3d(8px, -14px, 0) scale(1.2) rotate(48deg); }
+    }
+
+    @keyframes talkFlare {
+      0%, 100% { opacity: 0.16; transform: scale(0.68) rotate(0); }
+      45% { opacity: 0.74; transform: scale(1.06) rotate(18deg); }
+      58% { opacity: 0.42; transform: scale(0.86) rotate(25deg); }
+    }
+
+    @keyframes talkPrism {
+      0%, 100% { opacity: 0.18; transform: translate3d(0, 10px, 0) rotate(var(--prism-rotate)) scale(var(--prism-scale)); }
+      46% { opacity: 0.82; transform: translate3d(10px, -12px, 0) rotate(calc(var(--prism-rotate) + 24deg)) scale(var(--prism-scale)); }
+    }
+
+    @keyframes talkTitleSpark {
+      0%, 100% { opacity: 0.24; transform: scale(0.55) rotate(0); }
+      48% { opacity: 1; transform: scale(1.24) rotate(48deg); }
     }
 
     .hero {
@@ -1518,6 +1710,28 @@
       .talk-star.star-2 { top: 62%; left: 83%; }
       .talk-star.star-3 { display: none; }
 
+      .talk-flare.flare-1 {
+        --flare-size: 104px;
+        top: 12%;
+        left: 66%;
+      }
+
+      .talk-flare.flare-2 {
+        --flare-size: 74px;
+        top: 44%;
+        right: -3%;
+      }
+
+      .talk-flare.flare-3,
+      .talk-prism.prism-3,
+      .talk-prism.prism-4,
+      .talk-particle:nth-child(n + 21) {
+        display: none;
+      }
+
+      .talk-prism.prism-1 { top: 28%; left: 8%; }
+      .talk-prism.prism-2 { top: 69%; right: 7%; }
+
       .site-header {
         background: rgba(9, 9, 9, 0.76);
       }
@@ -1720,9 +1934,17 @@
         <img src="Photo10.JPG" alt="蒼井翔太">
       </div>
       <div class="talk-fx" aria-hidden="true">
-        <span class="talk-beam"></span>
-        <span class="talk-beam"></span>
-        <span class="talk-beam"></span>
+        <div class="talk-particles"></div>
+        <span class="talk-flare flare-1"></span>
+        <span class="talk-flare flare-2"></span>
+        <span class="talk-flare flare-3"></span>
+        <span class="talk-prism prism-1"></span>
+        <span class="talk-prism prism-2"></span>
+        <span class="talk-prism prism-3"></span>
+        <span class="talk-prism prism-4"></span>
+        <span class="talk-beam beam-1"></span>
+        <span class="talk-beam beam-2"></span>
+        <span class="talk-beam beam-3"></span>
         <span class="talk-flash"></span>
         <span class="talk-star star-1">✦</span>
         <span class="talk-star star-2">✦</span>
@@ -1910,6 +2132,78 @@
 
   <script>
     const header = document.getElementById("siteHeader");
+    const talkShow = document.getElementById("talkshow");
+    const particleField = talkShow?.querySelector(".talk-particles");
+
+    if (particleField) {
+      const sparkColors = ["#ffffff", "#eeff38", "#ff55dd", "#c68cff"];
+      for (let i = 0; i < 28; i += 1) {
+        const particle = document.createElement("span");
+        const x = 3 + ((i * 37) % 94);
+        const y = 5 + ((i * 53) % 88);
+        const size = 3 + ((i * 7) % 7);
+        const duration = 3.2 + ((i * 11) % 28) / 10;
+        const delay = -((i * 13) % 46) / 10;
+
+        particle.className = "talk-particle";
+        particle.style.setProperty("--x", `${x}%`);
+        particle.style.setProperty("--y", `${y}%`);
+        particle.style.setProperty("--size", `${size}px`);
+        particle.style.setProperty("--duration", `${duration}s`);
+        particle.style.setProperty("--delay", `${delay}s`);
+        particle.style.setProperty("--spark-color", sparkColors[i % sparkColors.length]);
+        particleField.appendChild(particle);
+      }
+    }
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (talkShow && !reducedMotion.matches) {
+      let pointerX = 0;
+      let pointerY = 0;
+      let scrollDepth = 0;
+      let parallaxFrame = 0;
+
+      const renderParallax = () => {
+        talkShow.style.setProperty("--photo-shift-x", `${(-pointerX * 10).toFixed(2)}px`);
+        talkShow.style.setProperty("--photo-shift-y", `${(-pointerY * 7 + scrollDepth * 12).toFixed(2)}px`);
+        talkShow.style.setProperty("--fx-shift-x", `${(pointerX * 22).toFixed(2)}px`);
+        talkShow.style.setProperty("--fx-shift-y", `${(pointerY * 16 - scrollDepth * 18).toFixed(2)}px`);
+        talkShow.style.setProperty("--content-shift-x", `${(pointerX * 5).toFixed(2)}px`);
+        talkShow.style.setProperty("--content-shift-y", `${(pointerY * 3 - scrollDepth * 4).toFixed(2)}px`);
+        parallaxFrame = 0;
+      };
+
+      const queueParallax = () => {
+        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(renderParallax);
+      };
+
+      const syncTalkScroll = () => {
+        const rect = talkShow.getBoundingClientRect();
+        const viewportCenter = window.innerHeight / 2;
+        const sectionCenter = rect.top + rect.height / 2;
+        scrollDepth = Math.max(-1, Math.min(1, (viewportCenter - sectionCenter) / window.innerHeight));
+        queueParallax();
+      };
+
+      if (window.matchMedia("(pointer: fine)").matches) {
+        talkShow.addEventListener("pointermove", (event) => {
+          const rect = talkShow.getBoundingClientRect();
+          pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+          pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+          queueParallax();
+        }, { passive: true });
+
+        talkShow.addEventListener("pointerleave", () => {
+          pointerX = 0;
+          pointerY = 0;
+          queueParallax();
+        });
+      }
+
+      window.addEventListener("scroll", syncTalkScroll, { passive: true });
+      syncTalkScroll();
+    }
+
     const syncHeader = () => {
       header.classList.toggle("is-scrolled", window.scrollY > 28);
     };
