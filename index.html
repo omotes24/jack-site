@@ -63,14 +63,6 @@
       text-decoration: none;
     }
 
-    .site-filters {
-      position: absolute;
-      width: 0;
-      height: 0;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
     /* Talk show campaign */
     .talk-show {
       --photo-entry-y: -86px;
@@ -1055,30 +1047,8 @@
       position: relative;
       z-index: 0;
       filter:
-        url("#jack-lime-filter")
         drop-shadow(11px 13px 0 rgba(230, 0, 45, 0.78))
         drop-shadow(0 18px 30px rgba(230, 0, 45, 0.24));
-    }
-
-    .hero-logo-accent {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-    }
-
-    .hero-logo-accent.tagline-white {
-      clip-path: polygon(24% 77.5%, 83% 68.8%, 83% 75.6%, 24% 84.3%);
-      filter: url("#logo-yellow-white-filter");
-    }
-
-    .hero-logo-accent.keio-lime {
-      clip-path: polygon(38% 94%, 64% 94%, 64% 99%, 38% 99%);
-      filter: url("#logo-lime-dark-filter");
     }
 
     @keyframes logoGloss {
@@ -1339,9 +1309,7 @@
       font-size: clamp(1.05rem, 1.8vw, 1.45rem);
       font-weight: 900;
       line-height: 1.35;
-      box-shadow:
-        8px 8px 0 rgba(238, 255, 56, 0.84),
-        -5px -5px 0 rgba(230, 0, 45, 0.82);
+      box-shadow: -5px -5px 0 rgba(230, 0, 45, 0.82);
     }
 
     .about-heading,
@@ -1729,7 +1697,6 @@
       height: 100%;
       object-fit: contain;
       transform: scale(1.35);
-      filter: url("#jack-lime-filter");
     }
 
     .footer-copy {
@@ -2231,33 +2198,6 @@
   </style>
 </head>
 <body>
-  <svg class="site-filters" aria-hidden="true" focusable="false">
-    <filter id="jack-lime-filter" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix" values="
-        0.93 -0.345 -0.345 0 0
-        1    -0.47 -0.47 0 0
-        0.22  0.07  0.07 0 0
-        0     0     0    1 0">
-      </feColorMatrix>
-    </filter>
-    <filter id="logo-yellow-white-filter" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix" values="
-        0 0 0 0 1
-        0 0 0 0 0.86
-        0 0 0 0 0.05
-        2 2 2 0 -5">
-      </feColorMatrix>
-    </filter>
-    <filter id="logo-lime-dark-filter" color-interpolation-filters="sRGB">
-      <feColorMatrix type="matrix" values="
-        0 0 0 0 0.68
-        0 0 0 0 1
-        0 0 0 0 0.12
-        -1.5 -1.5 -1.5 0 1">
-      </feColorMatrix>
-    </filter>
-  </svg>
-
   <main id="top">
     <section class="talk-show" id="talkshow" aria-labelledby="talkShowTitle">
       <div class="talk-photo">
@@ -2363,8 +2303,6 @@
         <div class="hero-visual reveal visible" aria-hidden="true">
           <div class="hero-logo-shell">
             <img class="hero-logo" src="jack-logo-cutout.png" alt="">
-            <img class="hero-logo-accent tagline-white" src="jack-logo-cutout.png" alt="">
-            <img class="hero-logo-accent keio-lime" src="jack-logo-cutout.png" alt="">
           </div>
           <div class="hero-meta">
             <span>Keio University</span>
