@@ -1060,6 +1060,27 @@
         drop-shadow(0 18px 30px rgba(230, 0, 45, 0.24));
     }
 
+    .hero-logo-accent {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      pointer-events: none;
+    }
+
+    .hero-logo-accent.tagline-white {
+      clip-path: polygon(24% 77.5%, 83% 68.8%, 83% 75.6%, 24% 84.3%);
+      filter: url("#logo-yellow-white-filter");
+    }
+
+    .hero-logo-accent.keio-lime {
+      clip-path: polygon(38% 94%, 64% 94%, 64% 99%, 38% 99%);
+      filter: url("#logo-lime-dark-filter");
+    }
+
     @keyframes logoGloss {
       0% { transform: translateX(-75%) skewX(-17deg); opacity: 0; }
       12% { opacity: 0.86; }
@@ -2219,6 +2240,22 @@
         0     0     0    1 0">
       </feColorMatrix>
     </filter>
+    <filter id="logo-yellow-white-filter" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 1
+        0 0 0 0 0.86
+        0 0 0 0 0.05
+        2 2 2 0 -5">
+      </feColorMatrix>
+    </filter>
+    <filter id="logo-lime-dark-filter" color-interpolation-filters="sRGB">
+      <feColorMatrix type="matrix" values="
+        0 0 0 0 0.68
+        0 0 0 0 1
+        0 0 0 0 0.12
+        -1.5 -1.5 -1.5 0 1">
+      </feColorMatrix>
+    </filter>
   </svg>
 
   <main id="top">
@@ -2326,6 +2363,8 @@
         <div class="hero-visual reveal visible" aria-hidden="true">
           <div class="hero-logo-shell">
             <img class="hero-logo" src="jack-logo-cutout.png" alt="">
+            <img class="hero-logo-accent tagline-white" src="jack-logo-cutout.png" alt="">
+            <img class="hero-logo-accent keio-lime" src="jack-logo-cutout.png" alt="">
           </div>
           <div class="hero-meta">
             <span>Keio University</span>
