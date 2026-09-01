@@ -253,17 +253,18 @@
     }
 
     .talk-show::after {
-      content: "SPECIAL TALK SHOW";
+      content: "";
       position: absolute;
-      left: -0.03em;
-      bottom: -0.28em;
-      z-index: 1;
-      color: rgba(255, 255, 255, 0.045);
-      font-size: clamp(5rem, 13vw, 13rem);
-      font-weight: 900;
-      line-height: 0.9;
-      letter-spacing: -0.09em;
-      white-space: nowrap;
+      left: 0;
+      right: 0;
+      bottom: -1px;
+      z-index: 3;
+      height: clamp(130px, 19vh, 200px);
+      background:
+        linear-gradient(112deg, rgba(236, 31, 204, 0.12) 0 17%, transparent 17% 100%),
+        linear-gradient(90deg, #120019 0%, #2a0646 52%, #11001d 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 24%, #000 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 24%, #000 100%);
       pointer-events: none;
     }
 
@@ -1272,10 +1273,11 @@
 
     .about-feature {
       position: relative;
+      margin-top: -1px;
       padding: 118px 0 130px;
       overflow: hidden;
       isolation: isolate;
-      border-block: 1px solid rgba(255, 255, 255, 0.14);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       background:
         linear-gradient(112deg, rgba(236, 31, 204, 0.12) 0 17%, transparent 17% 100%),
         linear-gradient(90deg, #120019 0%, #2a0646 52%, #11001d 100%);
@@ -1325,35 +1327,6 @@
       position: relative;
       margin: 0 auto 58px;
       text-align: center;
-    }
-
-    .about-kicker {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 14px;
-      margin: 0 0 24px;
-      color: var(--acid);
-      font-family: var(--font-about-en);
-      font-size: 1.35rem;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    .about-kicker::before,
-    .about-kicker::after {
-      content: "";
-      width: 54px;
-      height: 5px;
-      background: var(--magenta);
-      box-shadow: 10px 0 0 #4b66ff;
-      transform: skewX(-20deg);
-    }
-
-    .about-kicker::after {
-      box-shadow: -10px 0 0 #4b66ff;
     }
 
     .about-title-large {
@@ -1971,9 +1944,7 @@
       }
 
       .talk-show::after {
-        left: -0.08em;
-        bottom: -0.12em;
-        font-size: 4.5rem;
+        height: 132px;
       }
 
       .talk-photo img {
@@ -2214,11 +2185,6 @@
         margin-bottom: 44px;
       }
 
-      .about-kicker {
-        margin-bottom: 20px;
-        font-size: 1rem;
-      }
-
       .about-title-large {
         font-size: 6.2rem;
         text-shadow:
@@ -2408,7 +2374,6 @@
     <section class="about-feature reveal" id="about" aria-labelledby="aboutTitle">
       <div class="about-feature-inner">
         <div class="about-heading">
-          <p class="about-kicker">JACK Special Talk Show</p>
           <h2 class="about-title-large" id="aboutTitle">ABOUT<span>蒼井翔太研究会 2026</span></h2>
         </div>
         <div class="about-story">
