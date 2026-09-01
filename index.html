@@ -259,12 +259,12 @@
       right: 0;
       bottom: -1px;
       z-index: 3;
-      height: clamp(130px, 19vh, 200px);
+      height: clamp(180px, 26vh, 280px);
       background:
         linear-gradient(112deg, rgba(236, 31, 204, 0.12) 0 17%, transparent 17% 100%),
         linear-gradient(90deg, #120019 0%, #2a0646 52%, #11001d 100%);
-      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 24%, #000 100%);
-      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.18) 24%, #000 100%);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.24) 20%, rgba(0, 0, 0, 0.9) 72%, #000 100%);
+      mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.24) 20%, rgba(0, 0, 0, 0.9) 72%, #000 100%);
       pointer-events: none;
     }
 
@@ -598,7 +598,7 @@
     .talk-schedule {
       position: relative;
       margin-top: 8px;
-      padding: 10px 24px 14px 23px;
+      padding: 10px 24px 10px 23px;
       isolation: isolate;
       transform: skewX(-4deg);
       animation: talkScheduleIn 0.58s 1.48s cubic-bezier(0.1, 1, 0.2, 1) both;
@@ -614,19 +614,6 @@
         -5px 0 0 rgba(255, 31, 76, 0.48),
         5px 0 0 rgba(31, 96, 255, 0.48),
         0 0 24px rgba(151, 73, 255, 0.86);
-    }
-
-    .talk-schedule::after {
-      content: "";
-      position: absolute;
-      left: 17px;
-      right: -18px;
-      bottom: 4px;
-      height: 4px;
-      z-index: -1;
-      background: linear-gradient(90deg, var(--magenta), var(--acid) 58%, #3a6cff 88%, transparent);
-      transform-origin: left;
-      animation: talkScheduleLine 2.8s 1.9s ease-in-out infinite;
     }
 
     .talk-schedule-date,
@@ -667,7 +654,7 @@
 
     .talk-schedule-open {
       gap: 12px;
-      margin-top: 12px;
+      margin-top: 10px;
       align-items: center;
       color: var(--white);
       font-weight: 900;
@@ -685,6 +672,28 @@
     .talk-schedule-open strong {
       font-size: clamp(1.35rem, 2vw, 1.8rem);
       text-shadow: 0 0 22px rgba(151, 73, 255, 0.82);
+    }
+
+    .talk-schedule-venue {
+      position: relative;
+      z-index: 1;
+      margin: 13px 0 0;
+      display: grid;
+      gap: 3px;
+      color: rgba(255, 255, 255, 0.94);
+      font-size: clamp(0.76rem, 1.05vw, 0.92rem);
+      font-style: normal;
+      font-weight: 900;
+      line-height: 1.35;
+      letter-spacing: 0;
+      text-shadow:
+        -1px 0 0 rgba(255, 31, 76, 0.5),
+        1px 0 0 rgba(31, 96, 255, 0.5),
+        0 0 15px rgba(151, 73, 255, 0.72);
+    }
+
+    .talk-schedule-venue span {
+      white-space: nowrap;
     }
 
     .talk-side-label {
@@ -759,11 +768,6 @@
       to { opacity: 1; transform: translateY(0) skewX(-4deg); }
     }
 
-    @keyframes talkScheduleLine {
-      0%, 100% { transform: scaleX(0.72); opacity: 0.58; }
-      50% { transform: scaleX(1); opacity: 1; }
-    }
-
     @keyframes talkBeam {
       0%, 12% { opacity: 0; transform: rotate(var(--beam-angle)) scaleX(0); }
       28% { opacity: 1; transform: rotate(var(--beam-angle)) scaleX(1); }
@@ -826,6 +830,7 @@
       inset: 0;
       z-index: 2;
       background:
+        linear-gradient(180deg, #120609 0%, transparent 14%, transparent 84%, var(--red) 100%),
         linear-gradient(112deg, rgba(5, 5, 6, 0.96) 0%, rgba(18, 7, 10, 0.9) 44%, rgba(120, 0, 24, 0.62) 100%),
         repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0 1px, transparent 1px 18px);
     }
@@ -1181,7 +1186,6 @@
     .ticker {
       position: relative;
       overflow: hidden;
-      border-block: 1px solid rgba(0, 0, 0, 0.08);
       background: var(--red);
       color: var(--white);
     }
@@ -1277,8 +1281,8 @@
       padding: 118px 0 130px;
       overflow: hidden;
       isolation: isolate;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
       background:
+        linear-gradient(180deg, transparent 0%, transparent 88%, #120609 100%),
         linear-gradient(112deg, rgba(236, 31, 204, 0.12) 0 17%, transparent 17% 100%),
         linear-gradient(90deg, #120019 0%, #2a0646 52%, #11001d 100%);
       color: var(--white);
@@ -1364,8 +1368,7 @@
       gap: 0;
       max-width: 850px;
       margin: 0 auto;
-      border-top: 2px solid rgba(238, 255, 56, 0.9);
-      padding-top: 46px;
+      padding-top: 20px;
       text-align: center;
     }
 
@@ -1381,12 +1384,11 @@
       width: min(100%, 820px);
       padding-bottom: 40px;
       color: var(--white);
-      text-wrap: balance;
+      white-space: nowrap;
     }
 
     .about-guest {
       width: min(100%, 800px);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
       padding: 40px 0;
       color: rgba(255, 253, 248, 0.94);
       text-wrap: pretty;
@@ -1399,7 +1401,6 @@
 
     .about-profile {
       width: min(100%, 740px);
-      border-top: 1px solid rgba(255, 255, 255, 0.18);
       padding: 34px 0;
       color: rgba(255, 253, 248, 0.78);
     }
@@ -1430,7 +1431,6 @@
 
     .about-highlight {
       width: min(100%, 780px);
-      border-block: 1px solid rgba(255, 255, 255, 0.24);
       padding: 30px 0;
       color: var(--white);
     }
@@ -1489,6 +1489,8 @@
 
     .activity {
       background:
+        linear-gradient(180deg, var(--red) 0%, rgba(230, 0, 45, 0.46) 34px, transparent 92px),
+        linear-gradient(0deg, var(--black) 0%, rgba(10, 10, 10, 0.5) 38px, transparent 100px),
         linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) calc(100% - 1px)),
         var(--soft);
       background-size: 25% 100%;
@@ -1564,7 +1566,9 @@
     }
 
     .join {
-      background: var(--black);
+      background:
+        linear-gradient(0deg, var(--white) 0%, rgba(245, 245, 240, 0.52) 34px, transparent 92px),
+        var(--black);
       color: var(--white);
       overflow: hidden;
     }
@@ -1783,7 +1787,7 @@
     .site-footer {
       background: var(--white);
       color: var(--ink);
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin-top: -1px;
     }
 
     .footer-inner {
@@ -1836,6 +1840,13 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .about-feature.reveal,
+    .about-feature.reveal.visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     @media (max-width: 980px) {
@@ -1944,7 +1955,7 @@
       }
 
       .talk-show::after {
-        height: 132px;
+        height: 180px;
       }
 
       .talk-photo img {
@@ -1998,7 +2009,7 @@
       .talk-schedule {
         width: min(100%, 340px);
         align-self: center;
-        padding: 9px 9px 13px 18px;
+        padding: 9px 9px 8px 18px;
       }
 
       .talk-schedule-date {
@@ -2014,7 +2025,13 @@
       }
 
       .talk-schedule-open {
-        margin-top: 10px;
+        margin-top: 8px;
+      }
+
+      .talk-schedule-venue {
+        margin-top: 9px;
+        gap: 2px;
+        font-size: 0.7rem;
       }
 
       .talk-side-label {
@@ -2163,7 +2180,6 @@
 
       .about-feature {
         padding: 82px 0 92px;
-        border-top-width: 1px;
       }
 
       .about-feature::before {
@@ -2289,7 +2305,12 @@
       }
 
       .talk-schedule-open {
-        margin-top: 7px;
+        margin-top: 6px;
+      }
+
+      .talk-schedule-venue {
+        margin-top: 6px;
+        font-size: 0.64rem;
       }
     }
 
@@ -2361,6 +2382,10 @@
               <span>9月19日(土)</span>
               <strong>14:00〜</strong>
             </p>
+            <address class="talk-schedule-venue">
+              <span>慶應義塾大学矢上キャンパス</span>
+              <span>14棟東館B2Fマルチメディアルーム</span>
+            </address>
             <p class="talk-schedule-open">
               <span>入場開始</span>
               <strong>13:30〜</strong>
@@ -2377,7 +2402,7 @@
           <h2 class="about-title-large" id="aboutTitle">ABOUT<span>蒼井翔太研究会 2026</span></h2>
         </div>
         <div class="about-story">
-          <p class="about-opening"><strong>JACKのトークショーが<br>帰ってくる！</strong></p>
+          <p class="about-opening"><strong>JACKのトークショーが帰ってくる！</strong></p>
           <p class="about-guest"><strong>今回お迎えするのは、声優・アーティストとして第一線を走り続ける<span class="about-name">蒼井翔太。</span></strong></p>
           <p class="about-profile"><strong>『うたの☆プリンスさまっ♪』美風 藍役をはじめ、数々の人気作品で唯一無二の存在感を放ってきた蒼井翔太さん。</strong></p>
           <p class="about-question"><strong>その魅力は、いったいどこから生まれるのか？</strong></p>
