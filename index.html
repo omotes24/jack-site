@@ -9,7 +9,7 @@
   <link rel="preload" as="image" href="Photo10.JPG">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Teko:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Teko:wght@600;700&family=Yuji+Syuku&display=swap" rel="stylesheet">
   <style>
     :root {
       --red: #e6002d;
@@ -30,6 +30,7 @@
       --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
       --font-about-en: "Teko", "Arial Narrow", sans-serif;
       --font-about-ja: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+      --font-signature: "Yuji Syuku", "YuMincho", "Hiragino Mincho ProN", serif;
     }
 
     * {
@@ -1226,7 +1227,7 @@
     .about-feature {
       position: relative;
       margin-top: -1px;
-      padding: 118px 0 130px;
+      padding: 190px 0 130px;
       overflow: hidden;
       isolation: isolate;
       background:
@@ -1282,6 +1283,7 @@
     }
 
     .about-title-large {
+      position: relative;
       margin: 0;
       color: var(--white);
       font-family: var(--font-about-en);
@@ -1296,19 +1298,25 @@
     }
 
     .about-title-large span {
+      position: absolute;
+      top: -88px;
+      right: clamp(12px, 4vw, 64px);
+      z-index: 2;
       width: fit-content;
       display: block;
-      margin: 38px auto 0;
-      padding: 11px 17px 10px;
-      background: var(--acid);
-      color: #1b0628;
-      font-family: var(--font-about-ja);
-      font-size: clamp(0.8rem, 1.15vw, 1rem);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0;
-      text-shadow: none;
-      transform: skewX(-7deg);
+      margin: 0;
+      color: #fff;
+      font-family: var(--font-signature);
+      font-size: clamp(3.4rem, 5.8vw, 5.2rem);
+      font-weight: 400;
+      line-height: 0.92;
+      letter-spacing: 0.04em;
+      text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.7),
+        -4px 5px 0 rgba(108, 48, 225, 0.64),
+        0 0 34px rgba(237, 29, 204, 0.62);
+      transform: rotate(-7deg) skewX(-7deg);
+      transform-origin: center;
     }
 
     .about-story {
@@ -1437,11 +1445,11 @@
 
     .activity {
       background:
-        linear-gradient(180deg, var(--red) 0%, rgba(230, 0, 45, 0.46) 34px, transparent 92px),
-        linear-gradient(0deg, var(--black) 0%, rgba(10, 10, 10, 0.5) 38px, transparent 100px),
-        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(0, 0, 0, 0.06) calc(100% - 1px)),
-        var(--soft);
-      background-size: 25% 100%;
+        linear-gradient(180deg, var(--red) 0%, rgba(114, 0, 25, 0.72) 42px, transparent 112px),
+        linear-gradient(90deg, transparent 0, transparent calc(100% - 1px), rgba(255, 255, 255, 0.05) calc(100% - 1px)),
+        linear-gradient(180deg, #0c0a0d 0%, #050506 100%);
+      background-size: 100% 100%, 25% 100%, 100% 100%;
+      color: var(--white);
     }
 
     .activity-head {
@@ -1459,7 +1467,7 @@
     .activity-note {
       width: min(100%, 360px);
       margin: 0;
-      color: var(--muted);
+      color: rgba(255, 253, 248, 0.68);
       font-size: 0.92rem;
       line-height: 1.9;
     }
@@ -1467,20 +1475,20 @@
     .timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      border-left: 1px solid rgba(0, 0, 0, 0.1);
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .timeline-item {
       min-height: 260px;
       padding: 26px 24px;
-      border-right: 1px solid rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      background: rgba(255, 253, 248, 0.72);
+      border-right: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.045);
       transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .timeline-item:hover {
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.09);
       transform: translateY(-4px);
     }
 
@@ -1497,13 +1505,14 @@
 
     .timeline-item h3 {
       margin: 0 0 12px;
+      color: var(--white);
       font-size: 1.1rem;
       line-height: 1.45;
     }
 
     .timeline-item p {
       margin: 0;
-      color: var(--muted);
+      color: rgba(255, 253, 248, 0.68);
       font-size: 0.9rem;
       line-height: 1.85;
     }
@@ -1855,7 +1864,7 @@
 
       .about-feature {
         min-height: 0;
-        padding: 104px 0 116px;
+        padding: 165px 0 116px;
       }
 
       .about-feature-inner {
@@ -2134,7 +2143,7 @@
       }
 
       .about-feature {
-        padding: 82px 0 92px;
+        padding: 132px 0 92px;
       }
 
       .about-feature::before {
@@ -2164,8 +2173,10 @@
       }
 
       .about-title-large span {
-        margin-top: 27px;
-        font-size: 0.76rem;
+        top: -48px;
+        right: 0;
+        margin: 0;
+        font-size: 2.45rem;
       }
 
       .about-story {
@@ -2354,7 +2365,7 @@
     <section class="about-feature reveal" id="about" aria-labelledby="aboutTitle">
       <div class="about-feature-inner">
         <div class="about-heading">
-          <h2 class="about-title-large" id="aboutTitle">ABOUT<span>蒼井翔太研究会 2026</span></h2>
+          <h2 class="about-title-large" id="aboutTitle">ABOUT<span>蒼井翔太</span></h2>
         </div>
         <div class="about-story">
           <p class="about-opening"><strong>JACKのトークショーが帰ってくる！</strong></p>
