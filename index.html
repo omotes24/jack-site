@@ -65,6 +65,7 @@
 
     /* Talk show campaign */
     .talk-show {
+      --talk-height: max(110svh, 1000px);
       --photo-entry-y: -86px;
       --photo-shift-x: 0px;
       --photo-shift-y: 0px;
@@ -73,7 +74,7 @@
       --content-shift-x: 0px;
       --content-shift-y: 0px;
       position: relative;
-      min-height: 92svh;
+      min-height: var(--talk-height);
       isolation: isolate;
       overflow: hidden;
       background: #10031d;
@@ -361,17 +362,17 @@
       position: relative;
       z-index: 4;
       width: min(var(--max), calc(100% - 48px));
-      min-height: 92svh;
+      min-height: var(--talk-height);
       margin: 0 auto;
-      padding: 88px 0 28px;
+      padding: 120px 0 96px;
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       transform: translate3d(var(--content-shift-x), var(--content-shift-y), 0);
       will-change: transform;
     }
 
     .talk-copy {
-      width: min(58%, 640px);
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -387,13 +388,19 @@
       transform: skewX(-5deg);
     }
 
-    .talk-announcement span {
+    .talk-announcement > span {
       display: block;
       white-space: nowrap;
     }
 
+    .talk-announcement-label,
+    .talk-announcement-full,
+    .talk-announcement-hit > span {
+      display: inline-block;
+    }
+
     .talk-announcement-main {
-      font-size: 2.75rem;
+      font-size: 4.5rem;
       color: var(--white);
       text-shadow:
         -3px 0 0 rgba(255, 31, 76, 0.5),
@@ -406,7 +413,7 @@
       position: relative;
       margin-top: 0.08em;
       color: var(--acid);
-      font-size: 2.5rem;
+      font-size: 4.75rem;
       text-shadow:
         -5px 4px 0 rgba(255, 31, 76, 0.82),
         6px 7px 0 rgba(31, 96, 255, 0.78),
@@ -499,23 +506,11 @@
     .talk-thanks {
       position: relative;
       max-width: 100%;
-      margin-top: 8px;
-      padding: 10px 24px 10px 23px;
+      margin-top: 40px;
+      padding: 0;
       isolation: isolate;
       transform: skewX(-4deg);
       animation: talkThanksIn 0.58s 1.48s cubic-bezier(0.1, 1, 0.2, 1) both;
-    }
-
-    .talk-thanks::before {
-      content: "";
-      position: absolute;
-      inset: 4px auto 5px 0;
-      width: 7px;
-      background: linear-gradient(180deg, #ff1f4c 0 48%, #1f60ff 52% 100%);
-      box-shadow:
-        -5px 0 0 rgba(255, 31, 76, 0.48),
-        5px 0 0 rgba(31, 96, 255, 0.48),
-        0 0 24px rgba(151, 73, 255, 0.86);
     }
 
     .talk-thanks .talk-announcement {
@@ -528,6 +523,34 @@
     .talk-thanks .talk-announcement-hit::after {
       left: -3%;
       right: -3%;
+      background: linear-gradient(90deg, var(--magenta), #c3a6ff 58%, transparent);
+    }
+
+    .talk-memory {
+      padding: 72px 24px 120px;
+      background:
+        linear-gradient(180deg, transparent 0%, #070707 100%),
+        linear-gradient(90deg, #120019 0%, #2a0646 52%, #11001d 100%);
+    }
+
+    .talk-memory-photo {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .talk-memory-photo a {
+      display: block;
+      cursor: zoom-in;
+    }
+
+    .talk-memory-photo a:focus-visible {
+      outline: 3px solid #c3a6ff;
+      outline-offset: 8px;
+    }
+
+    .talk-memory-photo img {
+      width: 100%;
+      height: auto;
     }
 
     .talk-side-label {
@@ -1724,23 +1747,6 @@
         drop-shadow(15px 16px 0 rgba(216, 255, 31, 0.7));
     }
 
-    .talk-thanks {
-      margin-top: 18px;
-      padding: 22px 26px 26px 30px;
-      background: rgba(5, 5, 5, 0.88);
-      clip-path: polygon(3% 0, 100% 0, 96% 100%, 0 92%);
-      filter:
-        drop-shadow(-6px -5px 0 rgba(216, 255, 31, 0.92))
-        drop-shadow(8px 8px 0 rgba(230, 0, 45, 0.88));
-    }
-
-    .talk-thanks::before {
-      inset: 10px auto 12px 9px;
-      width: 8px;
-      background: #d8ff1f;
-      box-shadow: 5px 0 0 #e6002d;
-    }
-
     .talk-side-label {
       right: 14px;
       padding: 12px 7px;
@@ -2056,20 +2062,12 @@
         width: 76%;
       }
 
-      .talk-copy {
-        width: min(58%, 590px);
-      }
-
-      .talk-thanks {
-        padding: 20px 18px 24px 22px;
-      }
-
       .talk-announcement-main {
-        font-size: 2rem;
+        font-size: 2.75rem;
       }
 
       .talk-announcement-hit {
-        font-size: 1.75rem;
+        font-size: 3rem;
       }
 
       .talk-logo-stage {
@@ -2149,11 +2147,6 @@
     }
 
     @media (max-width: 680px) {
-      .talk-show,
-      .talk-inner {
-        min-height: 92svh;
-      }
-
       .talk-show {
         --photo-entry-y: -58px;
       }
@@ -2166,6 +2159,13 @@
 
       .talk-show::after {
         height: 180px;
+      }
+
+      .talk-photo {
+        bottom: auto;
+        height: 720px;
+        -webkit-mask-image: linear-gradient(#000 0 74%, transparent 100%);
+        mask-image: linear-gradient(#000 0 74%, transparent 100%);
       }
 
       .talk-photo img {
@@ -2189,21 +2189,34 @@
 
       .talk-inner {
         width: min(var(--max), calc(100% - 32px));
-        padding: 84px 0 62px;
+        padding: 84px 0 80px;
         align-items: stretch;
       }
 
       .talk-copy {
         width: 100%;
-        min-height: calc(92svh - 146px);
+        min-height: calc(var(--talk-height) - 164px);
       }
 
       .talk-announcement-main {
-        font-size: 1.75rem;
+        font-size: 2.375rem;
+      }
+
+      .talk-announcement-label,
+      .talk-announcement-full,
+      .talk-announcement-hit > span {
+        display: block;
+      }
+
+      .talk-announcement-full {
+        font-size: 4.5rem;
+        line-height: 1.15;
       }
 
       .talk-announcement-hit {
-        font-size: 1.625rem;
+        margin-top: 16px;
+        font-size: 2.75rem;
+        line-height: 1.25;
         text-shadow:
           -4px 3px 0 rgba(255, 31, 76, 0.82),
           5px 5px 0 rgba(31, 96, 255, 0.78),
@@ -2212,18 +2225,17 @@
 
       .talk-logo-stage {
         width: min(230px, 59vw);
-        margin: auto auto 8px 0;
+        margin: auto auto 0 0;
         padding: 10px;
       }
 
       .talk-thanks {
-        align-self: center;
-        padding: 18px 12px 22px 18px;
+        align-self: flex-start;
+        margin: 36px 8px 0;
       }
 
-      .talk-thanks::before {
-        left: 2px;
-        width: 4px;
+      .talk-memory {
+        padding: 36px 16px 64px;
       }
 
       .talk-side-label {
@@ -2487,34 +2499,20 @@
     }
 
     @media (max-width: 380px) {
-      .talk-thanks {
-        padding: 18px 8px 22px 16px;
+      .talk-announcement-main {
+        font-size: 2rem;
       }
 
-      .talk-announcement-main {
-        font-size: 1.5rem;
+      .talk-announcement-full {
+        font-size: 3.75rem;
       }
 
       .talk-announcement-hit {
-        font-size: 1.375rem;
+        font-size: 2.375rem;
       }
     }
 
     @media (max-width: 680px) and (max-height: 740px) {
-      .talk-show,
-      .talk-inner {
-        min-height: 700px;
-      }
-
-      .talk-inner {
-        padding-top: 76px;
-        padding-bottom: 52px;
-      }
-
-      .talk-copy {
-        min-height: 572px;
-      }
-
       .talk-logo-stage {
         width: min(198px, 54vw);
       }
@@ -2564,13 +2562,21 @@
           </div>
           <div class="talk-thanks">
             <h1 class="talk-announcement" id="talkShowTitle">
-              <span class="talk-announcement-main">トークショー満員御礼</span>
-              <span class="talk-announcement-hit">ありがとうございました！</span>
+              <span class="talk-announcement-main"><span class="talk-announcement-label">トークショー</span><span class="talk-announcement-full">満員御礼</span></span>
+              <span class="talk-announcement-hit"><span>ありがとう</span><span>ございました！</span></span>
             </h1>
           </div>
         </div>
       </div>
       <span class="talk-side-label" aria-hidden="true">Shouta Aoi / Talk Show / JACK 2026</span>
+    </section>
+
+    <section class="talk-memory" aria-label="トークショーの思い出">
+      <figure class="talk-memory-photo">
+        <a href="Photo13.jpg" target="_blank" rel="noopener" aria-label="会場のメッセージ写真を大きく表示">
+          <img src="Photo13.jpg" alt="蒼井翔太研究会の会場に残された手書きのお礼のメッセージ" width="1477" height="1108" loading="lazy" decoding="async">
+        </a>
+      </figure>
     </section>
 
     <section class="hero" id="jack" aria-labelledby="heroTitle">
