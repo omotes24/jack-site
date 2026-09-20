@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。蒼井翔太トークショーのチケット情報と、これまでの活動を掲載しています。">
+  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。蒼井翔太トークショーは満員御礼。ご来場ありがとうございました！これまでの活動も掲載しています。">
   <title>JACK | 慶應義塾大学 ジャパンアニメカルチャー研究会</title>
   <link rel="icon" href="jack-logo-cutout.png">
   <link rel="preload" as="image" href="Photo10.JPG">
@@ -171,7 +171,8 @@
     }
 
     .talk-fx::before,
-    .talk-fx::after {
+    .talk-fx::after,
+    .talk-orange-sweep {
       content: "";
       position: absolute;
       top: -18%;
@@ -196,6 +197,13 @@
       background: linear-gradient(70deg, transparent 28%, rgba(20, 87, 255, 0.86) 47%, rgba(102, 164, 255, 0.3) 58%, transparent 72%);
       clip-path: polygon(0 8%, 100% 28%, 100% 80%, 0 62%);
       animation: talkBlueSweep 6.8s 0.7s ease-in-out infinite;
+    }
+
+    .talk-orange-sweep {
+      left: -76%;
+      background: linear-gradient(112deg, transparent 22%, rgba(255, 98, 24, 0.4) 38%, rgba(255, 166, 58, 0.9) 48%, rgba(255, 215, 140, 0.3) 56%, transparent 72%);
+      clip-path: polygon(0 16%, 100% 0, 100% 76%, 0 94%);
+      animation: talkOrangeSweep 7.6s -2.8s ease-in-out infinite;
     }
 
     .talk-particles {
@@ -271,7 +279,7 @@
     .talk-flare.flare-3 {
       --flare-size: 92px;
       --flare-delay: 2.5s;
-      --flare-color: rgba(164, 62, 255, 0.94);
+      --flare-color: rgba(255, 163, 66, 0.94);
       left: 34%;
       bottom: 5%;
     }
@@ -300,7 +308,7 @@
       left: -12vw;
       width: 78vw;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(255, 30, 74, 0.94), rgba(154, 52, 255, 0.96), rgba(30, 96, 255, 0.94), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 155, 48, 0.94), rgba(255, 30, 74, 0.94), rgba(154, 52, 255, 0.96), rgba(30, 96, 255, 0.94), transparent);
       box-shadow:
         -8px 0 20px rgba(255, 30, 74, 0.62),
         8px 0 22px rgba(30, 96, 255, 0.68);
@@ -331,7 +339,7 @@
     .talk-flash {
       position: absolute;
       inset: -30%;
-      background: linear-gradient(108deg, transparent 40%, rgba(255, 38, 80, 0.38) 46%, rgba(255, 255, 255, 0.78) 50%, rgba(43, 106, 255, 0.44) 55%, transparent 62%);
+      background: linear-gradient(108deg, transparent 38%, rgba(255, 151, 51, 0.34) 42%, rgba(255, 38, 80, 0.38) 46%, rgba(255, 255, 255, 0.78) 50%, rgba(43, 106, 255, 0.44) 55%, transparent 62%);
       mix-blend-mode: screen;
       transform: translateX(-65%);
       animation: talkFlash 5.2s ease-in-out infinite;
@@ -371,20 +379,21 @@
 
     .talk-announcement {
       position: relative;
-      margin: 0;
+      margin: 0 0 14px;
       font-weight: 900;
-      line-height: 0.86;
-      letter-spacing: -0.075em;
+      line-height: 1.2;
+      letter-spacing: 0;
       text-transform: uppercase;
       transform: skewX(-5deg);
     }
 
     .talk-announcement span {
       display: block;
+      white-space: nowrap;
     }
 
     .talk-announcement-main {
-      font-size: clamp(2.4rem, 4.4vw, 4.6rem);
+      font-size: 2.75rem;
       color: var(--white);
       text-shadow:
         -3px 0 0 rgba(255, 31, 76, 0.5),
@@ -397,7 +406,7 @@
       position: relative;
       margin-top: 0.08em;
       color: var(--acid);
-      font-size: clamp(4.2rem, 7.4vw, 7.5rem);
+      font-size: 2.5rem;
       text-shadow:
         -5px 4px 0 rgba(255, 31, 76, 0.82),
         6px 7px 0 rgba(31, 96, 255, 0.78),
@@ -622,6 +631,13 @@
       0%, 12% { opacity: 0.1; transform: translate3d(12%, 0, 0) rotate(4deg); }
       52% { opacity: 0.5; transform: translate3d(-96%, 0, 0) rotate(-3deg); }
       80%, 100% { opacity: 0.08; transform: translate3d(-148%, 0, 0) rotate(-6deg); }
+    }
+
+    @keyframes talkOrangeSweep {
+      0%, 10% { opacity: 0.04; transform: translate3d(-10%, 0, 0) rotate(-8deg); }
+      38% { opacity: 0.38; transform: translate3d(100%, 0, 0) rotate(-2deg); }
+      64% { opacity: 0.42; transform: translate3d(164%, 0, 0) rotate(5deg); }
+      90%, 100% { opacity: 0.04; transform: translate3d(224%, 0, 0) rotate(9deg); }
     }
 
     @keyframes talkTitleIn {
@@ -2115,6 +2131,14 @@
         width: min(58%, 590px);
       }
 
+      .talk-announcement-main {
+        font-size: 2rem;
+      }
+
+      .talk-announcement-hit {
+        font-size: 1.75rem;
+      }
+
       .talk-logo-stage {
         width: min(326px, 37vw);
       }
@@ -2242,11 +2266,11 @@
       }
 
       .talk-announcement-main {
-        font-size: clamp(2rem, 10.5vw, 2.8rem);
+        font-size: 1.75rem;
       }
 
       .talk-announcement-hit {
-        font-size: clamp(3.8rem, 18vw, 5.2rem);
+        font-size: 1.625rem;
         text-shadow:
           -4px 3px 0 rgba(255, 31, 76, 0.82),
           5px 5px 0 rgba(31, 96, 255, 0.78),
@@ -2547,18 +2571,29 @@
       }
     }
 
+    @media (max-width: 380px) {
+      .talk-announcement-main {
+        font-size: 1.5rem;
+      }
+
+      .talk-announcement-hit {
+        font-size: 1.375rem;
+      }
+    }
+
     @media (max-width: 680px) and (max-height: 740px) {
+      .talk-show,
+      .talk-inner {
+        min-height: 700px;
+      }
+
       .talk-inner {
         padding-top: 76px;
         padding-bottom: 52px;
       }
 
-      .talk-announcement-main {
-        font-size: 1.85rem;
-      }
-
-      .talk-announcement-hit {
-        font-size: 3.45rem;
+      .talk-copy {
+        min-height: 572px;
       }
 
       .talk-logo-stage {
@@ -2598,6 +2633,7 @@
         <img src="Photo10.JPG" alt="蒼井翔太">
       </div>
       <div class="talk-fx" aria-hidden="true">
+        <span class="talk-orange-sweep"></span>
         <div class="talk-particles"></div>
         <span class="talk-flare flare-1"></span>
         <span class="talk-flare flare-2"></span>
@@ -2617,8 +2653,8 @@
       <div class="talk-inner">
         <div class="talk-copy">
           <h1 class="talk-announcement" id="talkShowTitle">
-            <span class="talk-announcement-main">トークショー</span>
-            <span class="talk-announcement-hit">決定！</span>
+            <span class="talk-announcement-main">トークショー満員御礼</span>
+            <span class="talk-announcement-hit">ありがとうございました！</span>
           </h1>
           <div class="talk-logo-stage">
             <img class="talk-event-logo" src="Photo11.JPG" alt="蒼井翔太研究会 2026">
