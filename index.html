@@ -371,7 +371,7 @@
     }
 
     .talk-copy {
-      width: min(52%, 610px);
+      width: min(58%, 640px);
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -496,16 +496,17 @@
       animation: talkLogoGlow 3.2s 1.45s ease-in-out infinite;
     }
 
-    .talk-schedule {
+    .talk-thanks {
       position: relative;
+      max-width: 100%;
       margin-top: 8px;
       padding: 10px 24px 10px 23px;
       isolation: isolate;
       transform: skewX(-4deg);
-      animation: talkScheduleIn 0.58s 1.48s cubic-bezier(0.1, 1, 0.2, 1) both;
+      animation: talkThanksIn 0.58s 1.48s cubic-bezier(0.1, 1, 0.2, 1) both;
     }
 
-    .talk-schedule::before {
+    .talk-thanks::before {
       content: "";
       position: absolute;
       inset: 4px auto 5px 0;
@@ -517,84 +518,16 @@
         0 0 24px rgba(151, 73, 255, 0.86);
     }
 
-    .talk-schedule-date,
-    .talk-schedule-open {
+    .talk-thanks .talk-announcement {
       position: relative;
       z-index: 1;
       margin: 0;
-      display: flex;
-      align-items: baseline;
-      letter-spacing: 0;
+      transform: none;
     }
 
-    .talk-schedule-date {
-      gap: 15px;
-      color: var(--white);
-      font-weight: 900;
-      line-height: 0.9;
-      white-space: nowrap;
-    }
-
-    .talk-schedule-date span {
-      font-size: clamp(1.35rem, 2.3vw, 2rem);
-      text-shadow:
-        -2px 0 0 rgba(255, 31, 76, 0.72),
-        2px 0 0 rgba(31, 96, 255, 0.72),
-        0 0 22px rgba(151, 73, 255, 0.72);
-    }
-
-    .talk-schedule-date strong {
-      color: var(--acid);
-      font-size: clamp(2.8rem, 4.7vw, 4.7rem);
-      line-height: 0.82;
-      text-shadow:
-        -4px 3px 0 rgba(255, 31, 76, 0.82),
-        5px 5px 0 rgba(31, 96, 255, 0.78),
-        0 0 30px rgba(151, 73, 255, 0.78);
-    }
-
-    .talk-schedule-open {
-      gap: 12px;
-      margin-top: 10px;
-      align-items: center;
-      color: var(--white);
-      font-weight: 900;
-      line-height: 1;
-    }
-
-    .talk-schedule-open span {
-      padding: 6px 9px 5px;
-      background: var(--magenta);
-      color: var(--white);
-      font-size: 0.74rem;
-      box-shadow: 4px 4px 0 rgba(31, 96, 255, 0.86);
-    }
-
-    .talk-schedule-open strong {
-      font-size: clamp(1.35rem, 2vw, 1.8rem);
-      text-shadow: 0 0 22px rgba(151, 73, 255, 0.82);
-    }
-
-    .talk-schedule-venue {
-      position: relative;
-      z-index: 1;
-      margin: 13px 0 0;
-      display: grid;
-      gap: 3px;
-      color: rgba(255, 255, 255, 0.94);
-      font-size: clamp(0.76rem, 1.05vw, 0.92rem);
-      font-style: normal;
-      font-weight: 900;
-      line-height: 1.35;
-      letter-spacing: 0;
-      text-shadow:
-        -1px 0 0 rgba(255, 31, 76, 0.5),
-        1px 0 0 rgba(31, 96, 255, 0.5),
-        0 0 15px rgba(151, 73, 255, 0.72);
-    }
-
-    .talk-schedule-venue span {
-      white-space: nowrap;
+    .talk-thanks .talk-announcement-hit::after {
+      left: -3%;
+      right: -3%;
     }
 
     .talk-side-label {
@@ -671,7 +604,7 @@
       84%, 100% { left: 128%; opacity: 0; }
     }
 
-    @keyframes talkScheduleIn {
+    @keyframes talkThanksIn {
       from { opacity: 0; transform: translateY(22px) skewX(-4deg); }
       to { opacity: 1; transform: translateY(0) skewX(-4deg); }
     }
@@ -1791,9 +1724,9 @@
         drop-shadow(15px 16px 0 rgba(216, 255, 31, 0.7));
     }
 
-    .talk-schedule {
+    .talk-thanks {
       margin-top: 18px;
-      padding: 17px 26px 15px 30px;
+      padding: 22px 26px 26px 30px;
       background: rgba(5, 5, 5, 0.88);
       clip-path: polygon(3% 0, 100% 0, 96% 100%, 0 92%);
       filter:
@@ -1801,15 +1734,11 @@
         drop-shadow(8px 8px 0 rgba(230, 0, 45, 0.88));
     }
 
-    .talk-schedule::before {
+    .talk-thanks::before {
       inset: 10px auto 12px 9px;
       width: 8px;
       background: #d8ff1f;
       box-shadow: 5px 0 0 #e6002d;
-    }
-
-    .talk-schedule-date strong {
-      color: #d8ff1f;
     }
 
     .talk-side-label {
@@ -2131,6 +2060,10 @@
         width: min(58%, 590px);
       }
 
+      .talk-thanks {
+        padding: 20px 18px 24px 22px;
+      }
+
       .talk-announcement-main {
         font-size: 2rem;
       }
@@ -2283,32 +2216,14 @@
         padding: 10px;
       }
 
-      .talk-schedule {
-        width: min(100%, 340px);
+      .talk-thanks {
         align-self: center;
-        padding: 9px 9px 8px 18px;
+        padding: 18px 12px 22px 18px;
       }
 
-      .talk-schedule-date {
-        gap: 10px;
-      }
-
-      .talk-schedule-date span {
-        font-size: 1.2rem;
-      }
-
-      .talk-schedule-date strong {
-        font-size: 2.75rem;
-      }
-
-      .talk-schedule-open {
-        margin-top: 8px;
-      }
-
-      .talk-schedule-venue {
-        margin-top: 9px;
-        gap: 2px;
-        font-size: 0.7rem;
+      .talk-thanks::before {
+        left: 2px;
+        width: 4px;
       }
 
       .talk-side-label {
@@ -2572,6 +2487,10 @@
     }
 
     @media (max-width: 380px) {
+      .talk-thanks {
+        padding: 18px 8px 22px 16px;
+      }
+
       .talk-announcement-main {
         font-size: 1.5rem;
       }
@@ -2600,18 +2519,6 @@
         width: min(198px, 54vw);
       }
 
-      .talk-schedule-date strong {
-        font-size: 2.4rem;
-      }
-
-      .talk-schedule-open {
-        margin-top: 6px;
-      }
-
-      .talk-schedule-venue {
-        margin-top: 6px;
-        font-size: 0.64rem;
-      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2652,26 +2559,14 @@
       </div>
       <div class="talk-inner">
         <div class="talk-copy">
-          <h1 class="talk-announcement" id="talkShowTitle">
-            <span class="talk-announcement-main">トークショー満員御礼</span>
-            <span class="talk-announcement-hit">ありがとうございました！</span>
-          </h1>
           <div class="talk-logo-stage">
             <img class="talk-event-logo" src="Photo11.JPG" alt="蒼井翔太研究会 2026">
           </div>
-          <div class="talk-schedule" aria-label="開催日時 2026年9月19日土曜日 14時。入場開始 13時30分。">
-            <p class="talk-schedule-date">
-              <span>9月19日(土)</span>
-              <strong>14:00〜</strong>
-            </p>
-            <address class="talk-schedule-venue">
-              <span>慶應義塾大学矢上キャンパス</span>
-              <span>14棟東館B2Fマルチメディアルーム</span>
-            </address>
-            <p class="talk-schedule-open">
-              <span>入場開始</span>
-              <strong>13:30〜</strong>
-            </p>
+          <div class="talk-thanks">
+            <h1 class="talk-announcement" id="talkShowTitle">
+              <span class="talk-announcement-main">トークショー満員御礼</span>
+              <span class="talk-announcement-hit">ありがとうございました！</span>
+            </h1>
           </div>
         </div>
       </div>
