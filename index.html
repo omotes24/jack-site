@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。蒼井翔太トークショーは満員御礼。ご来場ありがとうございました！これまでの活動も掲載しています。">
+  <meta name="description" content="慶應義塾大学 ジャパンアニメカルチャー研究会（JACK）の公式サイト。2026年の蒼井翔太研究会をはじめ、これまでの活動を掲載しています。トークショー満員御礼、ご来場ありがとうございました！">
   <title>JACK | 慶應義塾大学 ジャパンアニメカルチャー研究会</title>
   <link rel="icon" href="jack-logo-cutout.png">
-  <link rel="preload" as="image" href="Photo10.JPG">
+  <link rel="preload" as="image" href="jack-logo-cutout.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700;900&family=Teko:wght@600;700&family=WindSong:wght@500&display=swap" rel="stylesheet">
@@ -170,7 +170,7 @@
       z-index: 2;
       overflow: hidden;
       pointer-events: none;
-      transform: translate3d(var(--fx-shift-x), var(--fx-shift-y), 0) scale(1.04);
+      transform: translate3d(var(--fx-shift-x, 0px), var(--fx-shift-y, 0px), 0) scale(1.04);
       will-change: transform;
     }
 
@@ -1368,6 +1368,146 @@
       line-height: 1.9;
     }
 
+    .hero > .talk-fx {
+      z-index: 1;
+    }
+
+    .archive-feature {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      min-height: 660px;
+      margin-bottom: 48px;
+      padding: 52px 44px;
+      display: flex;
+      align-items: center;
+      background: #1a062c;
+    }
+
+    .archive-feature-media {
+      position: absolute;
+      inset: 0 -80px 0 36%;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .archive-feature-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, #1a062c 0%, rgba(26, 6, 44, 0.86) 15%, rgba(26, 6, 44, 0.12) 62%, rgba(26, 6, 44, 0.2) 100%),
+        linear-gradient(0deg, #1a062c 0%, transparent 28% 74%, #1a062c 100%);
+    }
+
+    .archive-feature-track {
+      display: flex;
+      width: max-content;
+      height: 100%;
+      animation: archivePan 32s linear infinite;
+      will-change: transform;
+    }
+
+    .archive-feature-gallery {
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      gap: 32px;
+      padding-right: 32px;
+    }
+
+    .archive-feature-gallery img {
+      flex-shrink: 0;
+      width: 420px;
+      height: 440px;
+      object-fit: contain;
+      opacity: 0.68;
+    }
+
+    .archive-feature-gallery .archive-whiteboard {
+      width: 540px;
+    }
+
+    @keyframes archivePan {
+      from { transform: translate3d(0, 0, 0); }
+      to { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .archive-feature > .talk-fx {
+      z-index: 1;
+    }
+
+    .archive-feature > .talk-fx::before {
+      animation-delay: -2.4s;
+    }
+
+    .archive-feature > .talk-fx::after {
+      animation-delay: -0.8s;
+    }
+
+    .archive-feature-copy {
+      position: relative;
+      z-index: 2;
+      width: min(60%, 640px);
+    }
+
+    .archive-feature-year {
+      display: block;
+      color: var(--acid);
+      font-family: var(--font-about-en);
+      font-size: 5rem;
+      line-height: 1;
+      text-shadow: var(--stage-text-shadow);
+    }
+
+    .archive-feature h3 {
+      margin: 12px 0 24px;
+      color: var(--white);
+      font-size: 2.5rem;
+      line-height: 1.3;
+      text-shadow: var(--stage-text-shadow);
+    }
+
+    .archive-feature-story p {
+      margin: 0;
+      color: var(--stage-copy);
+      font-size: 1rem;
+      line-height: 2;
+    }
+
+    .archive-feature-story p + p {
+      margin-top: 14px;
+    }
+
+    .archive-feature-story strong {
+      color: var(--acid);
+      font-weight: 900;
+    }
+
+    .archive-feature-thanks {
+      margin: 30px 0 0;
+    }
+
+    .archive-feature-thanks > span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    .archive-feature-thanks strong {
+      display: block;
+      color: var(--acid);
+      font-size: 1.875rem;
+      line-height: 1.4;
+      text-shadow: var(--stage-text-shadow);
+    }
+
+    .archive-feature-thanks strong span {
+      display: inline-block;
+    }
+
     .timeline {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -2078,6 +2218,22 @@
     }
 
     @media (max-width: 980px) {
+      .archive-feature {
+        padding: 40px 28px;
+      }
+
+      .archive-feature-copy {
+        width: 68%;
+      }
+
+      .archive-feature h3 {
+        font-size: 2rem;
+      }
+
+      .archive-feature-thanks strong {
+        font-size: 1.5rem;
+      }
+
       .talk-inner {
         width: min(var(--max), calc(100% - 32px));
       }
@@ -2171,6 +2327,55 @@
     }
 
     @media (max-width: 680px) {
+      .archive-feature {
+        min-height: 0;
+        margin-bottom: 32px;
+        padding: 264px 20px 36px;
+      }
+
+      .archive-feature-media {
+        inset: 0 0 auto;
+        height: 280px;
+      }
+
+      .archive-feature-media::after {
+        background:
+          linear-gradient(0deg, #1a062c 0%, rgba(26, 6, 44, 0.1) 52%, rgba(26, 6, 44, 0.2) 100%),
+          linear-gradient(90deg, rgba(26, 6, 44, 0.3), transparent 22% 78%, rgba(26, 6, 44, 0.3));
+      }
+
+      .archive-feature-gallery {
+        gap: 24px;
+        padding-right: 24px;
+      }
+
+      .archive-feature-gallery img {
+        width: 240px;
+        height: 240px;
+        opacity: 0.78;
+      }
+
+      .archive-feature-gallery .archive-whiteboard {
+        width: 320px;
+      }
+
+      .archive-feature-copy {
+        width: 100%;
+      }
+
+      .archive-feature-year {
+        font-size: 4.5rem;
+      }
+
+      .archive-feature h3 {
+        margin-top: 8px;
+        font-size: 1.75rem;
+      }
+
+      .archive-feature-thanks {
+        margin-top: 24px;
+      }
+
       .talk-show {
         --photo-entry-y: -58px;
       }
@@ -2573,52 +2778,6 @@
 </head>
 <body>
   <main id="top">
-    <section class="talk-show" id="talkshow" aria-labelledby="talkShowTitle">
-      <div class="talk-photo">
-        <img src="Photo10.JPG" alt="蒼井翔太">
-      </div>
-      <div class="talk-fx" aria-hidden="true">
-        <span class="talk-orange-sweep"></span>
-        <div class="talk-particles"></div>
-        <span class="talk-flare flare-1"></span>
-        <span class="talk-flare flare-2"></span>
-        <span class="talk-flare flare-3"></span>
-        <span class="talk-prism prism-1"></span>
-        <span class="talk-prism prism-2"></span>
-        <span class="talk-prism prism-3"></span>
-        <span class="talk-prism prism-4"></span>
-        <span class="talk-beam beam-1"></span>
-        <span class="talk-beam beam-2"></span>
-        <span class="talk-beam beam-3"></span>
-        <span class="talk-flash"></span>
-        <span class="talk-star star-1">✦</span>
-        <span class="talk-star star-2">✦</span>
-        <span class="talk-star star-3">✦</span>
-      </div>
-      <div class="talk-inner">
-        <div class="talk-copy">
-          <div class="talk-logo-stage">
-            <img class="talk-event-logo" src="Photo11.JPG" alt="蒼井翔太研究会 2026">
-          </div>
-          <div class="talk-thanks">
-            <h1 class="talk-announcement" id="talkShowTitle">
-              <span class="talk-announcement-main"><span class="talk-announcement-label">トークショー</span><span class="talk-announcement-full">満員御礼</span></span>
-              <span class="talk-announcement-hit"><span>ありがとう</span><span>ございました！</span></span>
-            </h1>
-          </div>
-        </div>
-      </div>
-      <span class="talk-side-label" aria-hidden="true">Shouta Aoi / Talk Show / JACK 2026</span>
-    </section>
-
-    <section class="talk-memory" aria-label="トークショーの思い出">
-      <figure class="talk-memory-photo">
-        <a href="Photo13.jpg" target="_blank" rel="noopener" aria-label="会場のメッセージ写真を大きく表示">
-          <img src="Photo13.jpg" alt="蒼井翔太研究会の会場に残された手書きのお礼のメッセージ" width="1477" height="1108" loading="lazy" decoding="async">
-        </a>
-      </figure>
-    </section>
-
     <section class="hero" id="jack" aria-labelledby="heroTitle">
       <div class="hero-media" aria-hidden="true">
         <div class="hero-slide"></div>
@@ -2626,14 +2785,17 @@
         <div class="hero-slide"></div>
         <div class="hero-slide"></div>
       </div>
+      <div class="talk-fx" aria-hidden="true">
+        <span class="talk-orange-sweep"></span>
+      </div>
       <div class="hero-inner">
         <div class="hero-copy reveal visible">
           <p class="eyebrow">慶應義塾大学 公認サークル</p>
-          <h2 class="hero-title" id="heroTitle">
+          <h1 class="hero-title" id="heroTitle">
             <span class="h1-outline">Japan</span><br>
             <span class="h1-red">Anime</span><br>
             Culture
-          </h2>
+          </h1>
           <p class="hero-lead">
             声優・アニメ業界の方々をお招きし、学園祭で記憶に残るイベントをつくる。
             ジャパンアニメカルチャー研究会は、アニメ文化を中心に人と企画が集まる慶應義塾大学のサークルです。
@@ -2674,6 +2836,37 @@
           </div>
           <p class="activity-note">これまでの学園祭イベントでは、第一線で活躍される声優の方々をお招きしてきました。</p>
         </div>
+
+        <article class="archive-feature" id="event-2026" aria-labelledby="event2026Title">
+          <div class="archive-feature-media" aria-hidden="true">
+            <div class="archive-feature-track">
+              <div class="archive-feature-gallery">
+                <img src="Photo11.JPG" alt="" width="420" height="440" loading="lazy" decoding="async">
+                <img class="archive-whiteboard" src="Photo13.jpg" alt="" width="540" height="440" loading="lazy" decoding="async">
+              </div>
+              <div class="archive-feature-gallery">
+                <img src="Photo11.JPG" alt="" width="420" height="440" loading="lazy" decoding="async">
+                <img class="archive-whiteboard" src="Photo13.jpg" alt="" width="540" height="440" loading="lazy" decoding="async">
+              </div>
+            </div>
+          </div>
+          <div class="talk-fx" aria-hidden="true">
+            <span class="talk-orange-sweep"></span>
+          </div>
+          <div class="archive-feature-copy">
+            <span class="archive-feature-year">2026</span>
+            <h3 id="event2026Title">蒼井翔太研究会</h3>
+            <div class="archive-feature-story">
+              <p>2年ぶりに開催となったJACK主催のトークショーは<strong>過去最大規模</strong>で行われた。</p>
+              <p>「研究会」と題して蒼井さんのこれまでの人生・ご経験を深掘らせていただいた。</p>
+              <p>ご来場していただいた方々・サークル員含め、全ての方々の人生の糧となったことは間違い無いだろう。</p>
+            </div>
+            <p class="archive-feature-thanks">
+              <span>トークショー満員御礼</span>
+              <strong><span>ありがとう</span><span>ございました！</span></strong>
+            </p>
+          </div>
+        </article>
 
         <div class="timeline">
           <article class="timeline-item reveal">
@@ -2749,77 +2942,6 @@
   </footer>
 
   <script>
-    const talkShow = document.getElementById("talkshow");
-    const particleField = talkShow?.querySelector(".talk-particles");
-    if (particleField) {
-      const sparkColors = ["#ffffff", "#ff294f", "#336dff", "#ad54ff"];
-      for (let i = 0; i < 28; i += 1) {
-        const particle = document.createElement("span");
-        const x = 3 + ((i * 37) % 94);
-        const y = 5 + ((i * 53) % 88);
-        const size = 3 + ((i * 7) % 7);
-        const duration = 3.2 + ((i * 11) % 28) / 10;
-        const delay = -((i * 13) % 46) / 10;
-
-        particle.className = "talk-particle";
-        particle.style.setProperty("--x", `${x}%`);
-        particle.style.setProperty("--y", `${y}%`);
-        particle.style.setProperty("--size", `${size}px`);
-        particle.style.setProperty("--duration", `${duration}s`);
-        particle.style.setProperty("--delay", `${delay}s`);
-        particle.style.setProperty("--spark-color", sparkColors[i % sparkColors.length]);
-        particleField.appendChild(particle);
-      }
-    }
-
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (talkShow && !reducedMotion.matches) {
-      let pointerX = 0;
-      let pointerY = 0;
-      let scrollDepth = 0;
-      let parallaxFrame = 0;
-
-      const renderParallax = () => {
-        talkShow.style.setProperty("--photo-shift-x", `${(-pointerX * 10).toFixed(2)}px`);
-        talkShow.style.setProperty("--photo-shift-y", `${(-pointerY * 7 + scrollDepth * 12).toFixed(2)}px`);
-        talkShow.style.setProperty("--fx-shift-x", `${(pointerX * 22).toFixed(2)}px`);
-        talkShow.style.setProperty("--fx-shift-y", `${(pointerY * 16 - scrollDepth * 18).toFixed(2)}px`);
-        talkShow.style.setProperty("--content-shift-x", `${(pointerX * 5).toFixed(2)}px`);
-        talkShow.style.setProperty("--content-shift-y", `${(pointerY * 3 - scrollDepth * 4).toFixed(2)}px`);
-        parallaxFrame = 0;
-      };
-
-      const queueParallax = () => {
-        if (!parallaxFrame) parallaxFrame = window.requestAnimationFrame(renderParallax);
-      };
-
-      const syncTalkScroll = () => {
-        const rect = talkShow.getBoundingClientRect();
-        const viewportCenter = window.innerHeight / 2;
-        const sectionCenter = rect.top + rect.height / 2;
-        scrollDepth = Math.max(-1, Math.min(1, (viewportCenter - sectionCenter) / window.innerHeight));
-        queueParallax();
-      };
-
-      if (window.matchMedia("(pointer: fine)").matches) {
-        talkShow.addEventListener("pointermove", (event) => {
-          const rect = talkShow.getBoundingClientRect();
-          pointerX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-          pointerY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-          queueParallax();
-        }, { passive: true });
-
-        talkShow.addEventListener("pointerleave", () => {
-          pointerX = 0;
-          pointerY = 0;
-          queueParallax();
-        });
-      }
-
-      window.addEventListener("scroll", syncTalkScroll, { passive: true });
-      syncTalkScroll();
-    }
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
